@@ -1,0 +1,104 @@
+{
+    "sources": [
+        {
+            "id": "otx",
+            "name": "AlienVault OTX",
+            "type": "api",
+            "category": "cti",
+            "requires_auth": true,
+            "collector": "otx_collector.py",
+            "raw_directory": "data/raw/otx",
+            "enabled": true
+        },
+        {
+            "id": "urlhaus",
+            "name": "URLhaus",
+            "type": "api",
+            "category": "malicious_urls",
+            "requires_auth": true,
+            "collector": "urlhaus_collector.py",
+            "raw_directory": "data/raw/urlhaus",
+            "enabled": true
+        },
+        {
+            "id": "threatfox",
+            "name": "ThreatFox",
+            "type": "api",
+            "category": "malware_cti",
+            "requires_auth": true,
+            "collector": "threatfox_collector.py",
+            "raw_directory": "data/raw/threatfox",
+            "enabled": true
+        },
+        {
+            "id": "feodo",
+            "name": "Feodo Tracker",
+            "type": "feed",
+            "category": "c2",
+            "requires_auth": false,
+            "collector": "feodo_collector.py",
+            "raw_directory": "data/raw/feodo",
+            "enabled": true
+        },
+        {
+            "id": "malwarebazaar",
+            "name": "MalwareBazaar",
+            "type": "api",
+            "category": "malware_hashes",
+            "requires_auth": true,
+            "collector": "malwarebazaar_collector.py",
+            "raw_directory": "data/raw/malwarebazaar",
+            "enabled": true
+        },
+        {
+            "id": "openphish",
+            "name": "OpenPhish",
+            "type": "feed",
+            "category": "phishing",
+            "requires_auth": false,
+            "collector": "openphish_collector.py",
+            "raw_directory": "data/raw/openphish",
+            "enabled": true
+        },
+        {
+            "id": "soc_community",
+            "name": "SOC-Community IOC Database",
+            "type": "repository",
+            "category": "community_cti",
+            "requires_auth": false,
+            "collector": "soc_ioc_collector.py",
+            "raw_directory": "data/raw/soc_ioc",
+            "enabled": true
+        },
+        {
+            "id": "infoblox",
+            "name": "Infoblox Threat Intelligence",
+            "type": "repository",
+            "category": "cti",
+            "requires_auth": false,
+            "collector": "infoblox_collector.py",
+            "raw_directory": "data/raw/infoblox",
+            "enabled": true
+        },
+        {
+            "id": "cisa_kev",
+            "name": "CISA Known Exploited Vulnerabilities",
+            "type": "feed",
+            "category": "vulnerabilities",
+            "requires_auth": false,
+            "collector": "cisa_kev_collector.py",
+            "raw_directory": "data/raw/cisa_kev",
+            "enabled": true
+        },
+        {
+            "id": "meta_threat_research",
+            "name": "Meta Threat Research",
+            "type": "repository",
+            "category": "threat_research",
+            "requires_auth": false,
+            "collector": "meta_threat_research_collector.py",
+            "raw_directory": "data/raw/meta_threat_research",
+            "enabled": true
+        }
+    ]
+}

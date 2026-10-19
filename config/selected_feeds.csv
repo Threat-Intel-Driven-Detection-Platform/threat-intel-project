@@ -1,0 +1,55 @@
+vendor,description,category,url,status,catalog
+Abuse.ch,The host file below contains the following datasets observed in the past 6 month: Payload delivery domains and Botnet C2 domains,DNS,https://threatfox.abuse.ch/downloads/hostfile/,Active,Bert-JanP
+Abuse.ch,Botnet C2 IP Blacklist ,IP,https://sslbl.abuse.ch/blacklist/sslipblacklist.csv,Active,Bert-JanP
+Abuse.ch,Botnet C2 IP Blacklist ,IP,https://sslbl.abuse.ch/blacklist/sslipblacklist.txt,Active,Bert-JanP
+Abuse.ch,Botnet C2 IP Blacklist aggressive,IP,https://sslbl.abuse.ch/blacklist/sslipblacklist_aggressive.csv,Active,Bert-JanP
+Abuse.ch,Botnet C2 IP Blacklist aggressive,IP,https://sslbl.abuse.ch/blacklist/sslipblacklist_aggressive.txt,Active,Bert-JanP
+Abuse.ch,Botnet C2 Indicators Of Compromise,IP,https://feodotracker.abuse.ch/downloads/ipblocklist.txt,Active,Bert-JanP
+Abuse.ch,all botnet C2s Feodo Tracker has ever seen,IP,https://feodotracker.abuse.ch/blocklist/,Active,Bert-JanP
+Abuse.ch,MD5 hashes: Recent additions,MD5,https://bazaar.abuse.ch/export/txt/md5/recent/,Active,Bert-JanP
+Abuse.ch,Recent found malicious files on C2,MD5,https://threatfox.abuse.ch/export/csv/md5/recent/,Active,Bert-JanP
+Abuse.ch,SHA1 hashes: Recent additions,SHA1,https://bazaar.abuse.ch/export/txt/sha1/recent/,Active,Bert-JanP
+Abuse.ch,SHA256 hashes: Recent additions,SHA256,https://bazaar.abuse.ch/export/txt/sha256/recent/,Active,Bert-JanP
+Abuse.ch,Recent found malicious files on C2,SHA256,https://threatfox.abuse.ch/export/csv/sha256/recent/,Active,Bert-JanP
+Abuse.ch,SSL Certificate Blacklist,SSL,https://sslbl.abuse.ch/blacklist/sslblacklist.csv,Active,Bert-JanP
+Abuse.ch,Recent Payload delivery domains and Botnet C2 domains,URL,https://threatfox.abuse.ch/export/csv/urls/recent/,Active,Bert-JanP
+Alienvault,Alienvault IP Reputation,IP,http://reputation.alienvault.com/reputation.data,Active,Bert-JanP
+CISA,KNOWN EXPLOITED VULNERABILITIES CATALOG (CSV),CVEID,https://www.cisa.gov/sites/default/files/csv/known_exploited_vulnerabilities.csv,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/1.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/2.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/3.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/4.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/5.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/6.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/7.txt,Active,Bert-JanP
+Ipsum, Malicious and/or suspicious ip adrresses,IP,https://raw.githubusercontent.com/stamparm/ipsum/master/levels/8.txt,Active,Bert-JanP
+Abuse.ch,Recent Malware URLs,URL,https://urlhaus.abuse.ch/downloads/csv_recent/,Active,Bert-JanP
+Phishing Army,The Blocklist to filter Phishing,URL,https://phishing.army/download/phishing_army_blocklist.txt,Active,Bert-JanP
+Phishing Army,The Blocklist to filter Phishing. This is the extended version also contains domains without subdomains.,URL,https://phishing.army/download/phishing_army_blocklist_extended.txt,Active,Bert-JanP
+OpenPhish,Phishing URLs,URL,https://openphish.com/feed.txt,Active,Bert-JanP
+Botvrij.eu,Blacklist Domain,DNS,https://www.botvrij.eu/data/blocklist/blocklist_domain.csv,Active,Bert-JanP
+Botvrij.eu,IOC List MD5,MD5,https://www.botvrij.eu/data/ioclist.md5,Active,Bert-JanP
+Botvrij.eu,IOC List SHA256,SHA256,https://www.botvrij.eu/data/ioclist.sha256,Active,Bert-JanP
+Botvrij.eu,OSINT MD5 Hashes,MD5,https://www.botvrij.eu/data/feed-osint/hashes.csv,Active,Bert-JanP
+CISA,KNOWN EXPLOITED VULNERABILITIES CATALOG (JSON),CVEID,https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json,Active,Bert-JanP
+Abuse.ch,JA3 Fingerprints,JA3,https://sslbl.abuse.ch/blacklist/ja3_fingerprints.csv,Active,Bert-JanP
+ThreatCluster,High-confidence malicious domains from the last 30 days,DNS,https://threatcluster.io/api/iocs/public/domains.txt,Active,Bert-JanP
+ThreatCluster,"High-confidence malicious IPs (IPv4, IPv6) from the last 30 days",IP,https://threatcluster.io/api/iocs/public/ips.txt,Active,Bert-JanP
+ThreatCluster,"High-confidence file hashes from the last 30 days (MD5, SHA-1, SHA-256)",MD5,https://threatcluster.io/api/iocs/public/hashes.txt,Active,Bert-JanP
+Abuse.ch,Botnet C2 Indicators of Compromise – Recommended Blocklist,IP,https://feodotracker.abuse.ch/downloads/ipblocklist_recommended.txt,Active,Kraloveckey
+C2IntelFeeds,C2 IP addresses – 30 day verified,IP,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/IPC2s-30day.csv,Active,Kraloveckey
+C2IntelFeeds,C2 domain list – 30 day filter abused,DNS,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/domainC2s-30day-filter-abused.csv,Active,Kraloveckey
+C2IntelFeeds,C2 domains with URLs – 30 day filter abused,DNS,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/domainC2swithURL-30day-filter-abused.csv,Active,Kraloveckey
+C2IntelFeeds,C2 domains with URLs – filter abused,DNS,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/domainC2swithURL-filter-abused.csv,Active,Kraloveckey
+C2IntelFeeds,C2 domains with URL and IP – 30 day filter abused,DNS,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/domainC2swithURLwithIP-30day-filter-abused.csv,Active,Kraloveckey
+C2IntelFeeds,C2 domains list,DNS,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/domainC2s.csv,Active,Kraloveckey
+C2IntelFeeds,Unverified C2 IPs,IP,https://raw.githubusercontent.com/drb-ra/C2IntelFeeds/master/feeds/unverified/IPC2s.csv,Active,Kraloveckey
+Botvrij.eu,IOC List SHA1,SHA1,https://www.botvrij.eu/data/ioclist.sha1,Active,Kraloveckey
+Botvrij.eu,Botvrij IOC IP Destination (raw),IP,http://www.botvrij.eu/data/ioclist.ip-dst.raw,Active,Kraloveckey
+Botvrij.eu,Botvrij IOC IP Source (raw),IP,http://www.botvrij.eu/data/ioclist.ip-src.raw,Active,Kraloveckey
+Abuse.ch,Feodo IP Blocklist Aggressive,IP,https://feodotracker.abuse.ch/downloads/ipblocklist_aggressive.txt,Active,Kraloveckey
+PhishTank,PhishTank Online Valid Phishing,URL,https://data.phishtank.com/data/online-valid.csv,Active,Kraloveckey
+Abuse.ch,ThreatFox IOCs – Recent (all types),URL,https://threatfox.abuse.ch/export/csv/recent/,Active,Kraloveckey
+PhishTank,PhishTank Online Valid Phishing (CSV),URL,http://data.phishtank.com/data/online-valid.csv,Active,Kraloveckey
+Botvrij.eu,Botvrij.eu OSINT MISP feed,MISP,https://www.botvrij.eu/data/feed-osint,Active,Kraloveckey
+CISA,CISA Cybersecurity Advisories,RSS,https://www.cisa.gov/cybersecurity-advisories/all.xml,Active,Kraloveckey

@@ -1,0 +1,27 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Secrets
+.env
+*.key
+*.pem
+
+# Large local datasets
+data/database/global_iocs.json
+data/database/*.db
+
+# Raw collected data
+data/raw/
+
+# Generated normalized data
+data/normalized/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
