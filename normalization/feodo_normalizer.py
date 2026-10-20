@@ -1,7 +1,9 @@
 import json
+from pathlib import Path
 
 INPUT_FILE = "data/raw/feodo/feodo_raw.json"
 OUTPUT_FILE = "data/normalized/feodo_normalized.json"
+Path(OUTPUT_FILE).parent.mkdir(parents=True, exist_ok=True)
 
 with open(INPUT_FILE, "r", encoding="utf-8") as f:
     raw_data = json.load(f)

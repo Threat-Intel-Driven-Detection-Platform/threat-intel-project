@@ -57,6 +57,10 @@ def main():
     print(f"Sources discovered: {len(SOURCE_FILES)}")
     print()
 
+    if not SOURCE_FILES:
+      print("ERROR: No normalized files found. Merge aborted.")
+      return
+ 
     global_iocs = {}
 
     source_counts = Counter()
@@ -213,7 +217,9 @@ def main():
 
     print(
         f"Source files:        {len(SOURCE_FILES):,}"
+
     )
+    
 
     print(
         f"Total records:       {total_records:,}"
