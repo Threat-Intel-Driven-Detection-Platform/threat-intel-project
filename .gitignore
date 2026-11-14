@@ -1,0 +1,10 @@
+﻿# Python temporary files
+__pycache__/
+*.py[cod]
+
+# Backup files
+*_backup.py
+*.bak
+
+# Old matcher baseline
+data/network/ioc_matches_baseline.json
