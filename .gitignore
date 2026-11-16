@@ -8,3 +8,7 @@ __pycache__/
 
 # Old matcher baseline
 data/network/ioc_matches_baseline.json
+
+# Secrets / generated
+.env
+results/sample_validation.json

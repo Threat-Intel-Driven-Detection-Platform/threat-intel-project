@@ -24,7 +24,7 @@ for pulse in raw_data["results"]:
             "reporter": pulse["author_name"],
             "tags": [
                 pulse["name"],
-                pulse["adversary"]
+                pulse.get("adversary")
             ]
         }
 

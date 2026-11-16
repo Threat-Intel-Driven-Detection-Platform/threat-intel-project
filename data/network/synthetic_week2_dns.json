@@ -1,0 +1,628 @@
+[
+  {
+    "timestamp": "2026-11-17T00:00:01+00:00",
+    "timestamp_unix": 1794873601.0,
+    "uid": "DNS-EXACT-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53001,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "EVIL-LAB.TEST.",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:02+00:00",
+    "timestamp_unix": 1794873602.0,
+    "uid": "DNS-SUB-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53002,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "a.b.evil-lab.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:03+00:00",
+    "timestamp_unix": 1794873603.0,
+    "uid": "DNS-NO-PARTIAL-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53003,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "notevil-lab.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:04+00:00",
+    "timestamp_unix": 1794873604.0,
+    "uid": "DNS-ANSWER-IP-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53004,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-answer.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.20",
+      "198.51.100.21"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:05+00:00",
+    "timestamp_unix": 1794873605.0,
+    "uid": "DNS-URL-HOST-NEG-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53005,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "url-host-only.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:06+00:00",
+    "timestamp_unix": 1794873606.0,
+    "uid": "DNS-SECOND-DOMAIN-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53006,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "another-evil.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:07+00:00",
+    "timestamp_unix": 1794873607.0,
+    "uid": "DNS-EMPTY-ANSWERS-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53007,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "clean.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-17T00:00:08+00:00",
+    "timestamp_unix": 1794873608.0,
+    "uid": "DNS-MISSING-ANSWERS-01",
+    "src_ip": "192.0.2.10",
+    "src_port": 53008,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "clean2.test",
+    "query_type": "A",
+    "response_code": "NOERROR"
+  },
+  {
+    "timestamp": "2026-11-17T00:00:01+00:00",
+    "timestamp_unix": 1794873701.0,
+    "uid": "DNS-BENIGN-001",
+    "src_ip": "192.0.2.30",
+    "src_port": 54001,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-1.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.101"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:02+00:00",
+    "timestamp_unix": 1794873702.0,
+    "uid": "DNS-BENIGN-002",
+    "src_ip": "192.0.2.30",
+    "src_port": 54002,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-2.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.102"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:03+00:00",
+    "timestamp_unix": 1794873703.0,
+    "uid": "DNS-BENIGN-003",
+    "src_ip": "192.0.2.30",
+    "src_port": 54003,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-3.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.103"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:04+00:00",
+    "timestamp_unix": 1794873704.0,
+    "uid": "DNS-BENIGN-004",
+    "src_ip": "192.0.2.30",
+    "src_port": 54004,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-4.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.104"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:05+00:00",
+    "timestamp_unix": 1794873705.0,
+    "uid": "DNS-BENIGN-005",
+    "src_ip": "192.0.2.30",
+    "src_port": 54005,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-5.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.105"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:06+00:00",
+    "timestamp_unix": 1794873706.0,
+    "uid": "DNS-BENIGN-006",
+    "src_ip": "192.0.2.30",
+    "src_port": 54006,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-6.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.106"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:07+00:00",
+    "timestamp_unix": 1794873707.0,
+    "uid": "DNS-BENIGN-007",
+    "src_ip": "192.0.2.30",
+    "src_port": 54007,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-7.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.107"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:08+00:00",
+    "timestamp_unix": 1794873708.0,
+    "uid": "DNS-BENIGN-008",
+    "src_ip": "192.0.2.30",
+    "src_port": 54008,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-8.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.108"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:09+00:00",
+    "timestamp_unix": 1794873709.0,
+    "uid": "DNS-BENIGN-009",
+    "src_ip": "192.0.2.30",
+    "src_port": 54009,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-9.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.109"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:10+00:00",
+    "timestamp_unix": 1794873710.0,
+    "uid": "DNS-BENIGN-010",
+    "src_ip": "192.0.2.30",
+    "src_port": 54010,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-10.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.110"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:11+00:00",
+    "timestamp_unix": 1794873711.0,
+    "uid": "DNS-BENIGN-011",
+    "src_ip": "192.0.2.30",
+    "src_port": 54011,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-11.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.111"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:12+00:00",
+    "timestamp_unix": 1794873712.0,
+    "uid": "DNS-BENIGN-012",
+    "src_ip": "192.0.2.30",
+    "src_port": 54012,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-12.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.112"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:13+00:00",
+    "timestamp_unix": 1794873713.0,
+    "uid": "DNS-BENIGN-013",
+    "src_ip": "192.0.2.30",
+    "src_port": 54013,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-13.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.113"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:14+00:00",
+    "timestamp_unix": 1794873714.0,
+    "uid": "DNS-BENIGN-014",
+    "src_ip": "192.0.2.30",
+    "src_port": 54014,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-14.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.114"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:15+00:00",
+    "timestamp_unix": 1794873715.0,
+    "uid": "DNS-BENIGN-015",
+    "src_ip": "192.0.2.30",
+    "src_port": 54015,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-15.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.115"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:16+00:00",
+    "timestamp_unix": 1794873716.0,
+    "uid": "DNS-BENIGN-016",
+    "src_ip": "192.0.2.30",
+    "src_port": 54016,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-16.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.116"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:17+00:00",
+    "timestamp_unix": 1794873717.0,
+    "uid": "DNS-BENIGN-017",
+    "src_ip": "192.0.2.30",
+    "src_port": 54017,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-17.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.117"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:18+00:00",
+    "timestamp_unix": 1794873718.0,
+    "uid": "DNS-BENIGN-018",
+    "src_ip": "192.0.2.30",
+    "src_port": 54018,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-18.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.118"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:19+00:00",
+    "timestamp_unix": 1794873719.0,
+    "uid": "DNS-BENIGN-019",
+    "src_ip": "192.0.2.30",
+    "src_port": 54019,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-19.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.119"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:20+00:00",
+    "timestamp_unix": 1794873720.0,
+    "uid": "DNS-BENIGN-020",
+    "src_ip": "192.0.2.30",
+    "src_port": 54020,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-20.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.120"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:21+00:00",
+    "timestamp_unix": 1794873721.0,
+    "uid": "DNS-BENIGN-021",
+    "src_ip": "192.0.2.30",
+    "src_port": 54021,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-21.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.121"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:22+00:00",
+    "timestamp_unix": 1794873722.0,
+    "uid": "DNS-BENIGN-022",
+    "src_ip": "192.0.2.30",
+    "src_port": 54022,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-22.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.122"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:23+00:00",
+    "timestamp_unix": 1794873723.0,
+    "uid": "DNS-BENIGN-023",
+    "src_ip": "192.0.2.30",
+    "src_port": 54023,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-23.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.123"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:24+00:00",
+    "timestamp_unix": 1794873724.0,
+    "uid": "DNS-BENIGN-024",
+    "src_ip": "192.0.2.30",
+    "src_port": 54024,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-24.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.124"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:25+00:00",
+    "timestamp_unix": 1794873725.0,
+    "uid": "DNS-BENIGN-025",
+    "src_ip": "192.0.2.30",
+    "src_port": 54025,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-25.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.125"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:26+00:00",
+    "timestamp_unix": 1794873726.0,
+    "uid": "DNS-BENIGN-026",
+    "src_ip": "192.0.2.30",
+    "src_port": 54026,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-26.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.126"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:27+00:00",
+    "timestamp_unix": 1794873727.0,
+    "uid": "DNS-BENIGN-027",
+    "src_ip": "192.0.2.30",
+    "src_port": 54027,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-27.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.127"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:28+00:00",
+    "timestamp_unix": 1794873728.0,
+    "uid": "DNS-BENIGN-028",
+    "src_ip": "192.0.2.30",
+    "src_port": 54028,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-28.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.128"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:29+00:00",
+    "timestamp_unix": 1794873729.0,
+    "uid": "DNS-BENIGN-029",
+    "src_ip": "192.0.2.30",
+    "src_port": 54029,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-29.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.129"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:30+00:00",
+    "timestamp_unix": 1794873730.0,
+    "uid": "DNS-BENIGN-030",
+    "src_ip": "192.0.2.30",
+    "src_port": 54030,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-30.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.130"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:31+00:00",
+    "timestamp_unix": 1794873731.0,
+    "uid": "DNS-BENIGN-031",
+    "src_ip": "192.0.2.30",
+    "src_port": 54031,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-31.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.131"
+    ]
+  },
+  {
+    "timestamp": "2026-11-17T00:00:32+00:00",
+    "timestamp_unix": 1794873732.0,
+    "uid": "DNS-BENIGN-032",
+    "src_ip": "192.0.2.30",
+    "src_port": 54032,
+    "dst_ip": "192.0.2.53",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "benign-32.synthetic.test",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "198.51.100.132"
+    ]
+  }
+]

@@ -1,0 +1,612 @@
+[
+  {
+    "timestamp": "2026-11-17T00:01:01+00:00",
+    "timestamp_unix": 1794873661.0,
+    "uid": "CONN-DST-IP-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40001,
+    "dst_ip": "203.0.113.10",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:02+00:00",
+    "timestamp_unix": 1794873662.0,
+    "uid": "CONN-SRC-IP-01",
+    "src_ip": "203.0.113.10",
+    "src_port": 12345,
+    "dst_ip": "192.0.2.20",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:03+00:00",
+    "timestamp_unix": 1794873663.0,
+    "uid": "CONN-IPPORT-DST-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40003,
+    "dst_ip": "203.0.113.11",
+    "dst_port": 4444,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:04+00:00",
+    "timestamp_unix": 1794873664.0,
+    "uid": "CONN-URL-EXPLICIT-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40004,
+    "dst_ip": "203.0.113.12",
+    "dst_port": 8080,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:05+00:00",
+    "timestamp_unix": 1794873665.0,
+    "uid": "CONN-URL-HTTP-DEFAULT-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40005,
+    "dst_ip": "203.0.113.13",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:06+00:00",
+    "timestamp_unix": 1794873666.0,
+    "uid": "CONN-URL-HTTPS-DEFAULT-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40006,
+    "dst_ip": "203.0.113.14",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:07+00:00",
+    "timestamp_unix": 1794873667.0,
+    "uid": "CONN-SRC-IPPORT-01",
+    "src_ip": "203.0.113.15",
+    "src_port": 53,
+    "dst_ip": "192.0.2.20",
+    "dst_port": 40007,
+    "protocol": "udp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:08+00:00",
+    "timestamp_unix": 1794873668.0,
+    "uid": "CONN-MULTI-IOC-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40008,
+    "dst_ip": "203.0.113.16",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:09+00:00",
+    "timestamp_unix": 1794873669.0,
+    "uid": "CONN-INVALID-PORT-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40009,
+    "dst_ip": "203.0.113.17",
+    "dst_port": 99999,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:10+00:00",
+    "timestamp_unix": 1794873670.0,
+    "uid": "CONN-INVALID-IP-01",
+    "src_ip": "not-an-ip",
+    "src_port": 40010,
+    "dst_ip": "203.0.113.18",
+    "dst_port": 8080,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:11+00:00",
+    "timestamp_unix": 1794873671.0,
+    "uid": "CONN-DUP-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40011,
+    "dst_ip": "203.0.113.19",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:11+00:00",
+    "timestamp_unix": 1794873671.0,
+    "uid": "CONN-DUP-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40011,
+    "dst_ip": "203.0.113.19",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:12+00:00",
+    "timestamp_unix": 1794873672.0,
+    "uid": "CONN-NORMALIZE-IP-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40012,
+    "dst_ip": "203.0.113.20",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:13+00:00",
+    "timestamp_unix": 1794873673.0,
+    "uid": "CONN-PORT-BOUNDARY-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40013,
+    "dst_ip": "203.0.113.21",
+    "dst_port": 1234,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:14+00:00",
+    "timestamp_unix": 1794873674.0,
+    "uid": "CONN-PORT-ZERO-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40014,
+    "dst_ip": "203.0.113.22",
+    "dst_port": 0,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:15+00:00",
+    "timestamp_unix": 1794873675.0,
+    "uid": "CONN-MISSING-PORT-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40015,
+    "dst_ip": "203.0.113.11",
+    "dst_port": null,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:01:16+00:00",
+    "timestamp_unix": 1794873676.0,
+    "uid": "CONN-BENIGN-01",
+    "src_ip": "192.0.2.20",
+    "src_port": 40016,
+    "dst_ip": "198.51.100.99",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:01+00:00",
+    "timestamp_unix": 1794873801.0,
+    "uid": "CONN-BENIGN-001",
+    "src_ip": "192.0.2.40",
+    "src_port": 41001,
+    "dst_ip": "198.51.100.101",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:02+00:00",
+    "timestamp_unix": 1794873802.0,
+    "uid": "CONN-BENIGN-002",
+    "src_ip": "192.0.2.40",
+    "src_port": 41002,
+    "dst_ip": "198.51.100.102",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:03+00:00",
+    "timestamp_unix": 1794873803.0,
+    "uid": "CONN-BENIGN-003",
+    "src_ip": "192.0.2.40",
+    "src_port": 41003,
+    "dst_ip": "198.51.100.103",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:04+00:00",
+    "timestamp_unix": 1794873804.0,
+    "uid": "CONN-BENIGN-004",
+    "src_ip": "192.0.2.40",
+    "src_port": 41004,
+    "dst_ip": "198.51.100.104",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:05+00:00",
+    "timestamp_unix": 1794873805.0,
+    "uid": "CONN-BENIGN-005",
+    "src_ip": "192.0.2.40",
+    "src_port": 41005,
+    "dst_ip": "198.51.100.105",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:06+00:00",
+    "timestamp_unix": 1794873806.0,
+    "uid": "CONN-BENIGN-006",
+    "src_ip": "192.0.2.40",
+    "src_port": 41006,
+    "dst_ip": "198.51.100.106",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:07+00:00",
+    "timestamp_unix": 1794873807.0,
+    "uid": "CONN-BENIGN-007",
+    "src_ip": "192.0.2.40",
+    "src_port": 41007,
+    "dst_ip": "198.51.100.107",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:08+00:00",
+    "timestamp_unix": 1794873808.0,
+    "uid": "CONN-BENIGN-008",
+    "src_ip": "192.0.2.40",
+    "src_port": 41008,
+    "dst_ip": "198.51.100.108",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:09+00:00",
+    "timestamp_unix": 1794873809.0,
+    "uid": "CONN-BENIGN-009",
+    "src_ip": "192.0.2.40",
+    "src_port": 41009,
+    "dst_ip": "198.51.100.109",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:10+00:00",
+    "timestamp_unix": 1794873810.0,
+    "uid": "CONN-BENIGN-010",
+    "src_ip": "192.0.2.40",
+    "src_port": 41010,
+    "dst_ip": "198.51.100.110",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:11+00:00",
+    "timestamp_unix": 1794873811.0,
+    "uid": "CONN-BENIGN-011",
+    "src_ip": "192.0.2.40",
+    "src_port": 41011,
+    "dst_ip": "198.51.100.111",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:12+00:00",
+    "timestamp_unix": 1794873812.0,
+    "uid": "CONN-BENIGN-012",
+    "src_ip": "192.0.2.40",
+    "src_port": 41012,
+    "dst_ip": "198.51.100.112",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:13+00:00",
+    "timestamp_unix": 1794873813.0,
+    "uid": "CONN-BENIGN-013",
+    "src_ip": "192.0.2.40",
+    "src_port": 41013,
+    "dst_ip": "198.51.100.113",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:14+00:00",
+    "timestamp_unix": 1794873814.0,
+    "uid": "CONN-BENIGN-014",
+    "src_ip": "192.0.2.40",
+    "src_port": 41014,
+    "dst_ip": "198.51.100.114",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:15+00:00",
+    "timestamp_unix": 1794873815.0,
+    "uid": "CONN-BENIGN-015",
+    "src_ip": "192.0.2.40",
+    "src_port": 41015,
+    "dst_ip": "198.51.100.115",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:16+00:00",
+    "timestamp_unix": 1794873816.0,
+    "uid": "CONN-BENIGN-016",
+    "src_ip": "192.0.2.40",
+    "src_port": 41016,
+    "dst_ip": "198.51.100.116",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:17+00:00",
+    "timestamp_unix": 1794873817.0,
+    "uid": "CONN-BENIGN-017",
+    "src_ip": "192.0.2.40",
+    "src_port": 41017,
+    "dst_ip": "198.51.100.117",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:18+00:00",
+    "timestamp_unix": 1794873818.0,
+    "uid": "CONN-BENIGN-018",
+    "src_ip": "192.0.2.40",
+    "src_port": 41018,
+    "dst_ip": "198.51.100.118",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:19+00:00",
+    "timestamp_unix": 1794873819.0,
+    "uid": "CONN-BENIGN-019",
+    "src_ip": "192.0.2.40",
+    "src_port": 41019,
+    "dst_ip": "198.51.100.119",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:20+00:00",
+    "timestamp_unix": 1794873820.0,
+    "uid": "CONN-BENIGN-020",
+    "src_ip": "192.0.2.40",
+    "src_port": 41020,
+    "dst_ip": "198.51.100.120",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:21+00:00",
+    "timestamp_unix": 1794873821.0,
+    "uid": "CONN-BENIGN-021",
+    "src_ip": "192.0.2.40",
+    "src_port": 41021,
+    "dst_ip": "198.51.100.121",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:22+00:00",
+    "timestamp_unix": 1794873822.0,
+    "uid": "CONN-BENIGN-022",
+    "src_ip": "192.0.2.40",
+    "src_port": 41022,
+    "dst_ip": "198.51.100.122",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:23+00:00",
+    "timestamp_unix": 1794873823.0,
+    "uid": "CONN-BENIGN-023",
+    "src_ip": "192.0.2.40",
+    "src_port": 41023,
+    "dst_ip": "198.51.100.123",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:24+00:00",
+    "timestamp_unix": 1794873824.0,
+    "uid": "CONN-BENIGN-024",
+    "src_ip": "192.0.2.40",
+    "src_port": 41024,
+    "dst_ip": "198.51.100.124",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:25+00:00",
+    "timestamp_unix": 1794873825.0,
+    "uid": "CONN-BENIGN-025",
+    "src_ip": "192.0.2.40",
+    "src_port": 41025,
+    "dst_ip": "198.51.100.125",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:26+00:00",
+    "timestamp_unix": 1794873826.0,
+    "uid": "CONN-BENIGN-026",
+    "src_ip": "192.0.2.40",
+    "src_port": 41026,
+    "dst_ip": "198.51.100.126",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:27+00:00",
+    "timestamp_unix": 1794873827.0,
+    "uid": "CONN-BENIGN-027",
+    "src_ip": "192.0.2.40",
+    "src_port": 41027,
+    "dst_ip": "198.51.100.127",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:28+00:00",
+    "timestamp_unix": 1794873828.0,
+    "uid": "CONN-BENIGN-028",
+    "src_ip": "192.0.2.40",
+    "src_port": 41028,
+    "dst_ip": "198.51.100.128",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:29+00:00",
+    "timestamp_unix": 1794873829.0,
+    "uid": "CONN-BENIGN-029",
+    "src_ip": "192.0.2.40",
+    "src_port": 41029,
+    "dst_ip": "198.51.100.129",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:30+00:00",
+    "timestamp_unix": 1794873830.0,
+    "uid": "CONN-BENIGN-030",
+    "src_ip": "192.0.2.40",
+    "src_port": 41030,
+    "dst_ip": "198.51.100.130",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:31+00:00",
+    "timestamp_unix": 1794873831.0,
+    "uid": "CONN-BENIGN-031",
+    "src_ip": "192.0.2.40",
+    "src_port": 41031,
+    "dst_ip": "198.51.100.131",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:32+00:00",
+    "timestamp_unix": 1794873832.0,
+    "uid": "CONN-BENIGN-032",
+    "src_ip": "192.0.2.40",
+    "src_port": 41032,
+    "dst_ip": "198.51.100.132",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:33+00:00",
+    "timestamp_unix": 1794873833.0,
+    "uid": "CONN-BENIGN-033",
+    "src_ip": "192.0.2.40",
+    "src_port": 41033,
+    "dst_ip": "198.51.100.133",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:34+00:00",
+    "timestamp_unix": 1794873834.0,
+    "uid": "CONN-BENIGN-034",
+    "src_ip": "192.0.2.40",
+    "src_port": 41034,
+    "dst_ip": "198.51.100.134",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:35+00:00",
+    "timestamp_unix": 1794873835.0,
+    "uid": "CONN-BENIGN-035",
+    "src_ip": "192.0.2.40",
+    "src_port": 41035,
+    "dst_ip": "198.51.100.135",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:36+00:00",
+    "timestamp_unix": 1794873836.0,
+    "uid": "CONN-BENIGN-036",
+    "src_ip": "192.0.2.40",
+    "src_port": 41036,
+    "dst_ip": "198.51.100.136",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:37+00:00",
+    "timestamp_unix": 1794873837.0,
+    "uid": "CONN-BENIGN-037",
+    "src_ip": "192.0.2.40",
+    "src_port": 41037,
+    "dst_ip": "198.51.100.137",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:38+00:00",
+    "timestamp_unix": 1794873838.0,
+    "uid": "CONN-BENIGN-038",
+    "src_ip": "192.0.2.40",
+    "src_port": 41038,
+    "dst_ip": "198.51.100.138",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:39+00:00",
+    "timestamp_unix": 1794873839.0,
+    "uid": "CONN-BENIGN-039",
+    "src_ip": "192.0.2.40",
+    "src_port": 41039,
+    "dst_ip": "198.51.100.139",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:40+00:00",
+    "timestamp_unix": 1794873840.0,
+    "uid": "CONN-BENIGN-040",
+    "src_ip": "192.0.2.40",
+    "src_port": 41040,
+    "dst_ip": "198.51.100.140",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:41+00:00",
+    "timestamp_unix": 1794873841.0,
+    "uid": "CONN-BENIGN-041",
+    "src_ip": "192.0.2.40",
+    "src_port": 41041,
+    "dst_ip": "198.51.100.141",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:42+00:00",
+    "timestamp_unix": 1794873842.0,
+    "uid": "CONN-BENIGN-042",
+    "src_ip": "192.0.2.40",
+    "src_port": 41042,
+    "dst_ip": "198.51.100.142",
+    "dst_port": 80,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:43+00:00",
+    "timestamp_unix": 1794873843.0,
+    "uid": "CONN-BENIGN-043",
+    "src_ip": "192.0.2.40",
+    "src_port": 41043,
+    "dst_ip": "198.51.100.143",
+    "dst_port": 443,
+    "protocol": "tcp"
+  },
+  {
+    "timestamp": "2026-11-17T00:02:44+00:00",
+    "timestamp_unix": 1794873844.0,
+    "uid": "CONN-BENIGN-044",
+    "src_ip": "192.0.2.40",
+    "src_port": 41044,
+    "dst_ip": "198.51.100.144",
+    "dst_port": 80,
+    "protocol": "tcp"
+  }
+]

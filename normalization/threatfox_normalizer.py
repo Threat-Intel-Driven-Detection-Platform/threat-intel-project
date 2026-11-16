@@ -11,6 +11,12 @@ with open(INPUT_FILE, "r", encoding="utf-8") as f:
 
 normalized_iocs = []
 
+if raw_data.get("query_status") != "ok" or "data" not in raw_data:
+    raise SystemExit(
+        f"threatfox_raw.json is not a valid ThreatFox export "
+        f"(query_status={raw_data.get('query_status')!r}). Re-run collectors/threatfox_collector.py with a valid THREATFOX_AUTH_KEY."
+    )
+
 for item in raw_data["data"]:
 
     normalized_ioc = {
