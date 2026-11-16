@@ -1,0 +1,16 @@
+WEEK 2 FIXED OVERLAY
+
+Extract/merge these paths into the ROOT of the existing Git clone.
+Do NOT overwrite:
+- zeek/logs/conn.log
+- zeek/logs/dns.log
+- data/network/connections.json
+- data/network/dns_queries.json
+- data/threat_intel.db
+- data/all_iocs.json
+- data/iocs_deduplicated.json
+- .git/ (never copy/replace this)
+
+The files under zeek/synthetic-test/ and pcaps/synthetic/ are safe lab test artifacts.
+results/detections.json is the single synthetic URL_IP_PORT_MATCH evidence record from the safe test PCAP; it is not evidence of live malicious traffic.
+No .env secrets are included. Configure your own .env from .env.example if needed.
