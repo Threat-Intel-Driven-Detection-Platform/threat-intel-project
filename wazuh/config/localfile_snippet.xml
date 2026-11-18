@@ -1,0 +1,6 @@
+﻿<!-- Add inside an existing <ossec_config> section -->
+
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/wazuh-week2/detections.jsonl</location>
+</localfile>

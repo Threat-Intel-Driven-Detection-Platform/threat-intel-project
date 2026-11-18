@@ -1,0 +1,6 @@
+[
+  {"id": "S1", "ioc": "github.com", "ioc_type": "domain", "source": "LAB-SAMPLE", "threat_type": "lab_sample", "malware": null, "confidence": null, "first_seen": null, "last_seen": null, "reporter": "team", "tags": ["exact-domain-test"]},
+  {"id": "S2", "ioc": "githubusercontent.com", "ioc_type": "domain", "source": "LAB-SAMPLE", "threat_type": "lab_sample", "malware": null, "confidence": null, "first_seen": null, "last_seen": null, "reporter": "team", "tags": ["subdomain-test"]},
+  {"id": "S3", "ioc": "140.82.121.3:443", "ioc_type": "ip:port", "source": "LAB-SAMPLE", "threat_type": "lab_sample", "malware": null, "confidence": null, "first_seen": null, "last_seen": null, "reporter": "team", "tags": ["ip-port-test"]},
+  {"id": "S4", "ioc": "http://185.199.110.133/lab-sample.bin", "ioc_type": "url", "source": "LAB-SAMPLE", "threat_type": "lab_sample", "malware": null, "confidence": null, "first_seen": null, "last_seen": null, "reporter": "team", "tags": ["url-default-port-test"]}
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "ioc": "evil-lab.test",
+    "ioc_type": "domain",
+    "source": "SyntheticLab",
+    "threat_type": "test_domain",
+    "confidence": 95,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 2,
+    "ioc": "subdomain-lab.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticLab",
+    "threat_type": "test_hostname",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 3,
+    "ioc": "203.0.113.10",
+    "ioc_type": "ipv4",
+    "source": "SyntheticLab",
+    "threat_type": "test_ip",
+    "confidence": 99,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 4,
+    "ioc": "203.0.113.11:4444",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "test_ip_port",
+    "confidence": 99,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 5,
+    "ioc": "http://203.0.113.12:8080/download/sample.bin",
+    "ioc_type": "url",
+    "source": "SyntheticLab",
+    "threat_type": "test_url",
+    "confidence": 99,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 6,
+    "ioc": "http://203.0.113.13/path/sample.exe",
+    "ioc_type": "url",
+    "source": "SyntheticLab",
+    "threat_type": "test_url_default_port",
+    "confidence": 99,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 7,
+    "ioc": "https://203.0.113.14/path/payload",
+    "ioc_type": "url",
+    "source": "SyntheticLab",
+    "threat_type": "test_https_default_port",
+    "confidence": 99,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 8,
+    "ioc": "http://url-host-only.test/path",
+    "ioc_type": "url",
+    "source": "SyntheticLab",
+    "threat_type": "url_host_context",
+    "confidence": 80,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 9,
+    "ioc": "198.51.100.20",
+    "ioc_type": "ipv4",
+    "source": "SyntheticLab",
+    "threat_type": "dns_answer_ip",
+    "confidence": 95,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 10,
+    "ioc": "203.0.113.15:53",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "source_ip_port",
+    "confidence": 95,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 11,
+    "ioc": "203.0.113.16",
+    "ioc_type": "ipv4",
+    "source": "SyntheticLab",
+    "threat_type": "multi_ioc_a",
+    "confidence": 95,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 12,
+    "ioc": "203.0.113.16",
+    "ioc_type": "ipv4",
+    "source": "SyntheticLab-SecondFeed",
+    "threat_type": "multi_ioc_b",
+    "confidence": 90,
+    "first_seen": "2026-11-02"
+  },
+  {
+    "id": 13,
+    "ioc": "203.0.113.17:99999",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "invalid_port_ioc",
+    "confidence": 50,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 14,
+    "ioc": "http://203.0.113.18:bad/path",
+    "ioc_type": "url",
+    "source": "SyntheticLab",
+    "threat_type": "invalid_url_port",
+    "confidence": 50,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 15,
+    "ioc": "203.0.113.19:443",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "duplicate_test",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 16,
+    "ioc": "203.0.113.20",
+    "ioc_type": "ipv4",
+    "source": "SyntheticLab",
+    "threat_type": "normalization_test",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 17,
+    "ioc": "another-evil.test",
+    "ioc_type": "domain",
+    "source": "SyntheticLab",
+    "threat_type": "second_domain",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 18,
+    "ioc": "203.0.113.21:1234",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "port_boundary_test",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 19,
+    "ioc": "203.0.113.22:0",
+    "ioc_type": "ip:port",
+    "source": "SyntheticLab",
+    "threat_type": "port_zero_test",
+    "confidence": 90,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 20,
+    "ioc": "indicator-20.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 21,
+    "ioc": "indicator-21.synthetic.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 22,
+    "ioc": "indicator-22.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 23,
+    "ioc": "indicator-23.synthetic.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 24,
+    "ioc": "indicator-24.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 25,
+    "ioc": "indicator-25.synthetic.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 26,
+    "ioc": "indicator-26.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 27,
+    "ioc": "indicator-27.synthetic.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 28,
+    "ioc": "indicator-28.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 29,
+    "ioc": "indicator-29.synthetic.test",
+    "ioc_type": "hostname",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  },
+  {
+    "id": 30,
+    "ioc": "indicator-30.synthetic.test",
+    "ioc_type": "domain",
+    "source": "SyntheticBackgroundFeed",
+    "threat_type": "background_test",
+    "confidence": 70,
+    "first_seen": "2026-11-01"
+  }
+]
