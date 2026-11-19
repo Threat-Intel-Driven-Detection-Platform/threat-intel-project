@@ -1,0 +1,75 @@
+<!-- Local rules -->
+<!-- Modify it at your will. -->
+<!-- Copyright (C) 2015, Wazuh Inc. -->
+
+<group name="local,syslog,sshd,">
+  <rule id="100001" level="5">
+    <if_sid>5716</if_sid>
+    <srcip>1.1.1.1</srcip>
+    <description>sshd: authentication failed from IP 1.1.1.1.</description>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,</group>
+  </rule>
+</group>
+
+<group name="threat_intel,week3,">
+
+  <rule id="100500" level="3">
+    <decoded_as>json</decoded_as>
+    <field name="match_id" type="pcre2">.+</field>
+    <description>Threat Intelligence: IOC match event received - $(indicator)</description>
+    <group>threat_intel,ioc_match,</group>
+  </rule>
+
+  <rule id="100503" level="8">
+    <if_sid>100500</if_sid>
+    <field name="confidence" type="pcre2">^(?:7[5-9]|8[0-9]|9[0-9]|100)$</field>
+    <description>Threat Intelligence: High confidence IOC match - $(indicator)</description>
+    <group>threat_intel,high_confidence,</group>
+  </rule>
+
+  <rule id="100501" level="8">
+    <if_sid>100503</if_sid>
+    <field name="threat_type">^payload_delivery$</field>
+    <description>Threat Intelligence: Payload delivery IOC match detected - $(indicator)</description>
+    <group>threat_intel,payload_delivery,ioc_match,</group>
+  </rule>
+
+  <rule id="100504" level="6">
+    <if_sid>100500</if_sid>
+    <field name="confidence" type="pcre2">^(?:5[0-9]|6[0-9]|7[0-4])$</field>
+    <description>Threat Intelligence: Medium confidence IOC match - $(indicator)</description>
+    <group>threat_intel,medium_confidence,</group>
+  </rule>
+
+  <rule id="100502" level="7">
+    <if_sid>100504</if_sid>
+    <field name="threat_type">^botnet_cc$</field>
+    <description>Threat Intelligence: Botnet C2 IOC match detected - $(indicator)</description>
+    <group>threat_intel,botnet_cc,ioc_match,</group>
+  </rule>
+
+  <rule id="100505" level="5">
+    <if_sid>100500</if_sid>
+    <field name="match_type">^EXACT_DOMAIN$</field>
+    <field name="evidence_source">^dns.log$</field>
+    <description>Threat Intelligence: Exact domain IOC match - $(indicator)</description>
+    <group>threat_intel,dns,exact_domain,</group>
+  </rule>
+
+  <rule id="100506" level="5">
+    <if_sid>100500</if_sid>
+    <field name="match_type">^SUBDOMAIN_OF_IOC_DOMAIN$</field>
+    <field name="evidence_source">^dns.log$</field>
+    <description>Threat Intelligence: IOC subdomain match - $(domain)</description>
+    <group>threat_intel,dns,subdomain_match,</group>
+  </rule>
+
+  <rule id="100507" level="6">
+    <if_sid>100500</if_sid>
+    <field name="match_type">^URL_IP_PORT_MATCH$</field>
+    <field name="evidence_source">^conn.log$</field>
+    <description>Threat Intelligence: URL IP and port IOC match - $(indicator)</description>
+    <group>threat_intel,url_ip_port,</group>
+  </rule>
+
+</group>

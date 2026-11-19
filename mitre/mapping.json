@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "project": "Threat-Intel-Driven Detection Platform",
+  "phase": "Week 3 - MITRE ATT&CK Mapping",
+  "mapping_policy": {
+    "principle": "Map MITRE ATT&CK techniques only when observed behavior is supported by available evidence.",
+    "ioc_match_alone_is_insufficient": true,
+    "unconfirmed_techniques_must_not_be_reported_as_detected": true
+  },
+  "confirmed_mappings": [],
+  "detections_reviewed": [
+    {
+      "threat_type": "payload_delivery",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "port": 25565,
+      "match_type": "EXACT_IP_PORT",
+      "evidence_source": "conn.log",
+      "detection_count": 9,
+      "connection_state": "S0",
+      "observed_orig_bytes": 0,
+      "observed_resp_bytes": 0,
+      "mitre_techniques": [],
+      "mapping_status": "not_confirmed",
+      "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established."
+    },
+    {
+      "threat_type": "botnet_cc",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "port": 15766,
+      "match_type": "EXACT_IP_PORT",
+      "evidence_source": "conn.log",
+      "detection_count": 6,
+      "connection_state": "S0",
+      "observed_orig_bytes": 0,
+      "observed_resp_bytes": 0,
+      "mitre_techniques": [],
+      "mapping_status": "not_confirmed",
+      "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed."
+    }
+  ],
+  "candidate_techniques": [
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Web Protocols",
+      "tactic": "Command and Control",
+      "status": "candidate_only",
+      "required_evidence": "Observed HTTP or HTTPS communication independently linked to command-and-control activity."
+    },
+    {
+      "technique_id": "T1071.004",
+      "technique_name": "DNS",
+      "tactic": "Command and Control",
+      "status": "candidate_only",
+      "required_evidence": "Observed DNS communication independently demonstrating command-and-control behavior, not merely a DNS IOC match."
+    }
+  ],
+  "summary": {
+    "total_detections_reviewed": 15,
+    "confirmed_techniques": 0,
+    "candidate_techniques": 2,
+    "confirmed_mapping_policy_followed": true,
+    "conclusion": "No MITRE ATT&CK technique is confirmed by the currently available PCAP evidence. Candidate techniques are documented for future investigation only."
+  }
+}
