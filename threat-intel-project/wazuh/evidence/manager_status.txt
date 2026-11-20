@@ -1,0 +1,35 @@
+● wazuh-manager.service - Wazuh manager
+     Loaded: loaded (/usr/lib/systemd/system/wazuh-manager.service; enabled; preset: enabled)
+    Drop-In: /etc/systemd/system/wazuh-manager.service.d
+             └─override.conf
+     Active: active (running) since Tue 2026-11-17 22:31:32 UTC; 48min ago
+    Process: 55625 ExecStart=/usr/bin/env /var/ossec/bin/wazuh-control start (code=exited, status=0/SUCCESS)
+      Tasks: 225 (limit: 3411)
+     Memory: 2.2G (peak: 2.2G swap: 32.0K swap peak: 32.0K)
+        CPU: 41min 31.592s
+     CGroup: /system.slice/wazuh-manager.service
+             ├─55688 /var/ossec/framework/python/bin/python3 /var/ossec/api/scripts/wazuh_apid.py
+             ├─55689 /var/ossec/framework/python/bin/python3 /var/ossec/api/scripts/wazuh_apid.py
+             ├─55690 /var/ossec/framework/python/bin/python3 /var/ossec/api/scripts/wazuh_apid.py
+             ├─55693 /var/ossec/framework/python/bin/python3 /var/ossec/api/scripts/wazuh_apid.py
+             ├─55697 /var/ossec/framework/python/bin/python3 /var/ossec/api/scripts/wazuh_apid.py
+             ├─55733 /var/ossec/bin/wazuh-authd
+             ├─55748 /var/ossec/bin/wazuh-db
+             ├─55783 /var/ossec/bin/wazuh-execd
+             ├─55797 /var/ossec/bin/wazuh-analysisd
+             ├─55809 /var/ossec/bin/wazuh-syscheckd
+             ├─55826 /var/ossec/bin/wazuh-remoted
+             ├─55861 /var/ossec/bin/wazuh-logcollector
+             ├─55881 /var/ossec/bin/wazuh-monitord
+             └─55933 /var/ossec/bin/wazuh-modulesd
+
+Nov 17 22:31:24 wazuhserver env[55625]: Started wazuh-syscheckd...
+Nov 17 22:31:26 wazuhserver env[55625]: Started wazuh-remoted...
+Nov 17 22:31:27 wazuhserver env[55625]: Started wazuh-logcollector...
+Nov 17 22:31:29 wazuhserver env[55625]: Started wazuh-monitord...
+Nov 17 22:31:29 wazuhserver env[55930]: 2026/11/17 22:31:29 wazuh-modulesd:router: INFO: Loaded router module.
+Nov 17 22:31:29 wazuhserver env[55930]: 2026/11/17 22:31:29 wazuh-modulesd:content_manager: INFO: Loaded content_manager module.
+Nov 17 22:31:29 wazuhserver env[55930]: 2026/11/17 22:31:29 wazuh-modulesd:inventory-harvester: INFO: Loaded Inventory harvester module.
+Nov 17 22:31:30 wazuhserver env[55625]: Started wazuh-modulesd...
+Nov 17 22:31:32 wazuhserver env[55625]: Completed.
+Nov 17 22:31:32 wazuhserver systemd[1]: Started wazuh-manager.service - Wazuh manager.
