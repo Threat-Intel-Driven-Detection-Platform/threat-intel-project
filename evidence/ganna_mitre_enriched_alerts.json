@@ -1,0 +1,266 @@
+{
+  "project": "Threat-Intel-Driven Detection Platform",
+  "phase": "Week 3 - Wazuh + Risk Scoring + MITRE Review",
+  "source_alerts": "K:\\Wazuh-Project\\ganna-week3\\evidence\\ganna_pcap_wazuh_alerts.jsonl",
+  "total_alerts": 15,
+  "confirmed_techniques": [],
+  "candidate_techniques_for_further_investigation": [
+    {
+      "technique_id": "T1071.001",
+      "technique_name": "Web Protocols",
+      "tactic": "Command and Control",
+      "status": "candidate_only",
+      "required_evidence": "Observed HTTP or HTTPS communication independently linked to command-and-control activity."
+    },
+    {
+      "technique_id": "T1071.004",
+      "technique_name": "DNS",
+      "tactic": "Command and Control",
+      "status": "candidate_only",
+      "required_evidence": "Observed DNS communication independently demonstrating command-and-control behavior, not merely a DNS IOC match."
+    }
+  ],
+  "note": "Candidate techniques are not assigned to individual alerts. No MITRE technique has been confirmed by observed network behavior.",
+  "alerts": [
+    {
+      "match_id": "M-63faad05960cb25b",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-ea94aee15cb01e5a",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-c84c1f5ee43f1eff",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-7cc0f7dcb3a4b687",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-cd01975014f06a2e",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-9a67d6897ed36335",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-337ceee99cf39c54",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-cc7f838980139f27",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-5ac6fbc59cc1bf6e",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-06399f16fcd1f950",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-a941800d13890486",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-8cb8e778e593b6d8",
+      "wazuh_rule_id": "100501",
+      "indicator": "130.12.180.42",
+      "threat_type": "payload_delivery",
+      "risk_score": "73",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "The IOC matched an IP and port, but all associated connections were S0 with no observed response or transferred bytes. Payload delivery or execution is not established.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-ac5661f350b17150",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-f20b1964769cada7",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    },
+    {
+      "match_id": "M-913bec9d3308652f",
+      "wazuh_rule_id": "100502",
+      "indicator": "178.104.232.30",
+      "threat_type": "botnet_cc",
+      "risk_score": "60",
+      "risk_level": "High",
+      "mitre_review": {
+        "mapping_status": "not_confirmed",
+        "confirmed_techniques": [],
+        "reason": "Threat intelligence classifies the indicator as botnet C2, but the observed PCAP evidence only shows unanswered connection attempts. Command-and-control behavior is not independently confirmed.",
+        "connection_state": "S0",
+        "observed_orig_bytes": 0,
+        "observed_resp_bytes": 0
+      }
+    }
+  ]
+}
