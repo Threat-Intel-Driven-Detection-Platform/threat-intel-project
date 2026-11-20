@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	dhcp
+#open	2026-11-20-00-47-34
+#fields	ts	uids	client_addr	server_addr	mac	host_name	client_fqdn	domain	requested_addr	assigned_addr	lease_time	client_message	server_message	msg_types	duration
+#types	time	set[string]	addr	addr	string	string	string	string	addr	addr	interval	string	string	vector[string]	interval
+1737575096.530137	C9uMcS2T97CHpLeMK9,C0PcoglqzYcYtTba	10.1.17.215	10.1.17.2	00:d0:b7:26:4a:74	DESKTOP-L8C5GSJ	DESKTOP-L8C5GSJ.bluemoontuesday.com	bluemoontuesday.com	10.1.17.215	10.1.17.215	691200.000000	-	-	DISCOVER,OFFER,REQUEST,ACK	0.002879
+#close	2026-11-20-00-47-35

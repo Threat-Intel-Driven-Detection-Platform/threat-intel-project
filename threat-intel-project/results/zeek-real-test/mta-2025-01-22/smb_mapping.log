@@ -1,0 +1,17 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	smb_mapping
+#open	2026-11-20-00-47-34
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	path	service	native_file_system	share_type
+#types	time	string	addr	port	addr	port	string	string	string	string
+1737575124.512016	CO2eku2BqAcQynrot6	10.1.17.215	50125	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737575619.140095	CUzfnn3eJdUlY09kNl	10.1.17.215	50225	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737575760.999507	C2dqpl3vut9EPgAIM1	10.1.17.215	49757	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737575760.999507	C2dqpl3vut9EPgAIM1	10.1.17.215	49757	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	DISK
+1737575772.102102	C2dqpl3vut9EPgAIM1	10.1.17.215	49757	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737576661.006329	CrifqRXp7i18LJNw7	10.1.17.215	49860	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737577561.003030	CaVcdE4Wt6s1QlHBxd	10.1.17.215	49911	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+1737577689.907498	CfTHzB3i2G970WTqac	10.1.17.215	49916	10.1.17.2	445	\\\\WIN-GSH54QLW48D.bluemoontuesday.com\\IPC$	-	-	PIPE
+#close	2026-11-20-00-47-35

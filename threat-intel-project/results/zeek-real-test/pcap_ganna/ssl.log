@@ -1,0 +1,17 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssl
+#open	2026-11-19-18-33-40
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	cipher	curve	server_name	resumed	last_alert	next_protocol	established	ssl_history	cert_chain_fps	client_cert_chain_fps	sni_matches_cert
+#types	time	string	addr	port	addr	port	string	string	string	string	bool	string	string	bool	string	vector[string]	vector[string]	bool
+1795105458.086555	CKBv2f4mQUTDFtPZ0k	192.168.100.5	61280	199.232.81.155	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	play.anghami.com	F	-	-	T	CsiI	-	-	-
+1795105468.449649	CFucqC2h37In4dJWr5	192.168.100.5	57422	102.132.103.60	443	TLSv13	TLS_AES_128_GCM_SHA256	x25519	media-hbe1-2.cdn.whatsapp.net	T	-	-	T	CsiI	-	-	-
+1795105493.172323	CTRSe93qFBWaERger3	192.168.100.5	56373	104.18.39.21	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	ws.chatgpt.com	F	-	-	T	CsiI	-	-	-
+1795105501.831975	CRp43n3KBebkkaYpg	192.168.100.5	64678	102.132.103.60	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	web.whatsapp.com	T	-	-	F	Cs	-	-	-
+1795105498.705466	CULyy5tQcqj1K0FZj	192.168.100.5	56596	192.178.204.93	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	safebrowsing.google.com	T	-	-	F	Cs	-	-	-
+1795105479.055459	CFVlMm4SVMdBdPxBhj	192.168.100.5	63462	192.178.203.113	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	encrypted-tbn0.gstatic.com	F	-	-	F	Cs	-	-	-
+1795105470.923220	CKywiNEWxBl2kkaug	192.168.100.5	52467	162.159.135.233	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	cloudflare-ech.com	F	-	-	F	Cs	-	-	-
+1795105462.482272	CkiMju3ayymqDjTUn2	192.168.100.5	57282	142.251.153.120	443	TLSv13	TLS_AES_128_GCM_SHA256	X25519MLKEM768	ssl.gstatic.com	F	-	-	F	Cs	-	-	-
+#close	2026-11-19-18-33-40

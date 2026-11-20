@@ -1,0 +1,16 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	weird
+#open	2026-11-20-00-47-34
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	name	addl	notice	peer	source
+#types	time	string	addr	port	addr	port	string	string	bool	string	string
+1737575096.547663	C8nHBO2BdeQuC3Ase2	10.1.17.215	58958	10.1.17.2	53	DNS_unknown_opcode	5	F	zeek	DNS
+1737575706.565508	CC8Kqo37Z9brBxswI2	10.1.17.215	51412	10.1.17.2	53	DNS_unknown_opcode	5	F	zeek	DNS
+1737575746.688515	C8eRNz3uwM98Fa0uEe	10.1.17.215	49751	10.1.17.2	49684	netlogon_dce_rpc_auth_type	68	F	zeek	DCE_RPC
+1737575772.107682	CN0X2e4wta13lvRyci	10.1.17.215	49761	10.1.17.2	49668	netlogon_dce_rpc_auth_type	68	F	zeek	DCE_RPC
+1737576365.675165	CaC3GO3H2aJNOzrNb6	10.1.17.215	49844	10.1.17.2	49668	netlogon_dce_rpc_auth_type	68	F	zeek	DCE_RPC
+1737577689.916537	CJeM6V1JZJuKBCwZz4	10.1.17.215	49919	10.1.17.2	49668	netlogon_dce_rpc_auth_type	68	F	zeek	DCE_RPC
+1737577947.684341	CeZiYC3wt8VGKYLuXd	10.1.17.215	49956	10.1.17.2	49668	netlogon_dce_rpc_auth_type	68	F	zeek	DCE_RPC
+#close	2026-11-20-00-47-35

@@ -1,0 +1,307 @@
+[
+  {
+    "timestamp": "2026-11-19T16:24:18.020385+00:00",
+    "timestamp_unix": 1795105458.020385,
+    "uid": "C4Gk4F3peXlhbuYkJa",
+    "src_ip": "192.168.100.5",
+    "src_port": 51054,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "play.anghami.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": [
+      "anghami.map.fastly.net"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:18.021036+00:00",
+    "timestamp_unix": 1795105458.021036,
+    "uid": "CVOEBX2Qy5y6mq5nQ1",
+    "src_ip": "192.168.100.5",
+    "src_port": 62205,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "play.anghami.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "anghami.map.fastly.net",
+      "199.232.81.155"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:19.699909+00:00",
+    "timestamp_unix": 1795105459.699909,
+    "uid": "CkvmmDSh4xSVJELp3",
+    "src_ip": "192.168.100.5",
+    "src_port": 51415,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "www.google.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:19.700065+00:00",
+    "timestamp_unix": 1795105459.700065,
+    "uid": "Cpmsla4YCto6SKEUmi",
+    "src_ip": "192.168.100.5",
+    "src_port": 62398,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "www.google.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "142.251.156.119",
+      "142.251.152.119",
+      "142.251.153.119",
+      "142.251.155.119",
+      "142.251.151.119",
+      "142.251.150.119",
+      "142.251.157.119",
+      "142.251.154.119"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:27.195796+00:00",
+    "timestamp_unix": 1795105467.195796,
+    "uid": "CQ1nIgXCTqyzm1ke8",
+    "src_ip": "192.168.100.5",
+    "src_port": 55566,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "ab.chatgpt.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "172.64.155.209",
+      "104.18.32.47"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:27.195294+00:00",
+    "timestamp_unix": 1795105467.195294,
+    "uid": "CwuHpt25lNdp91ltI5",
+    "src_ip": "192.168.100.5",
+    "src_port": 53346,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "ab.chatgpt.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:30.135724+00:00",
+    "timestamp_unix": 1795105470.135724,
+    "uid": "CbxlQTQMYml68Igw6",
+    "src_ip": "fe80::e2e4:3277:b637:f4cd",
+    "src_port": 49664,
+    "dst_ip": "fe80::1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "mobile.events.data.microsoft.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": [
+      "mobile.events.data.trafficmanager.net",
+      "onedscolprdgwc51.germanywestcentral.cloudapp.azure.com"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:30.136170+00:00",
+    "timestamp_unix": 1795105470.13617,
+    "uid": "CYmtig2Ye0TVpSz4S5",
+    "src_ip": "fe80::e2e4:3277:b637:f4cd",
+    "src_port": 59714,
+    "dst_ip": "fe80::1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "mobile.events.data.microsoft.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "mobile.events.data.trafficmanager.net",
+      "onedscolprdgwc51.germanywestcentral.cloudapp.azure.com",
+      "20.52.64.205"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:30.875704+00:00",
+    "timestamp_unix": 1795105470.875704,
+    "uid": "C1iVYt1RGqsBrOAnt",
+    "src_ip": "fe80::e2e4:3277:b637:f4cd",
+    "src_port": 58477,
+    "dst_ip": "fe80::1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "discordapp.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:30.876656+00:00",
+    "timestamp_unix": 1795105470.876656,
+    "uid": "CV53oJ17KaVBPhwZ3l",
+    "src_ip": "fe80::e2e4:3277:b637:f4cd",
+    "src_port": 49803,
+    "dst_ip": "fe80::1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "discordapp.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "162.159.135.233",
+      "162.159.133.233",
+      "162.159.130.233",
+      "162.159.129.233",
+      "162.159.134.233"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:26.346667+00:00",
+    "timestamp_unix": 1795105466.346667,
+    "uid": "CBiWSj4ubQPb4HMtZa",
+    "src_ip": "192.168.100.6",
+    "src_port": 5353,
+    "dst_ip": "224.0.0.251",
+    "dst_port": 5353,
+    "protocol": "udp",
+    "domain": "6.100.168.192.in-addr.arpa",
+    "query_type": null,
+    "response_code": "NOERROR",
+    "answers": [
+      "android.local",
+      "android.local",
+      "192.168.100.6",
+      "fe80::721f:3cff:fe20:4549"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:26.346879+00:00",
+    "timestamp_unix": 1795105466.346879,
+    "uid": "CaBLqn3xEebsJgpmUd",
+    "src_ip": "fe80::721f:3cff:fe20:4549",
+    "src_port": 5353,
+    "dst_ip": "ff02::fb",
+    "dst_port": 5353,
+    "protocol": "udp",
+    "domain": "6.100.168.192.in-addr.arpa",
+    "query_type": null,
+    "response_code": "NOERROR",
+    "answers": [
+      "android.local",
+      "android.local",
+      "192.168.100.6",
+      "fe80::721f:3cff:fe20:4549"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:39.042476+00:00",
+    "timestamp_unix": 1795105479.042476,
+    "uid": "CHh4cY2qxiJHJ2B036",
+    "src_ip": "192.168.100.5",
+    "src_port": 54155,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "encrypted-tbn0.gstatic.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:39.044673+00:00",
+    "timestamp_unix": 1795105479.044673,
+    "uid": "CF7PZv1oCMxLALApIk",
+    "src_ip": "192.168.100.5",
+    "src_port": 63013,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "encrypted-tbn0.gstatic.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "192.178.203.113",
+      "192.178.203.138",
+      "192.178.203.100",
+      "192.178.203.101",
+      "192.178.203.139",
+      "192.178.203.102"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:52.902566+00:00",
+    "timestamp_unix": 1795105492.902566,
+    "uid": "ClIPSo24Cc5ZluqHqj",
+    "src_ip": "192.168.100.5",
+    "src_port": 54457,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "chatgpt.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:52.902711+00:00",
+    "timestamp_unix": 1795105492.902711,
+    "uid": "CxATXZ1vPUzOc6w9Ad",
+    "src_ip": "192.168.100.5",
+    "src_port": 54218,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "chatgpt.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "104.18.32.47",
+      "172.64.155.209"
+    ]
+  },
+  {
+    "timestamp": "2026-11-19T16:24:53.119582+00:00",
+    "timestamp_unix": 1795105493.119582,
+    "uid": "C9NiIU1y62n15GxP4f",
+    "src_ip": "192.168.100.5",
+    "src_port": 65158,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "ws.chatgpt.com",
+    "query_type": "HTTPS",
+    "response_code": "NOERROR",
+    "answers": []
+  },
+  {
+    "timestamp": "2026-11-19T16:24:53.119736+00:00",
+    "timestamp_unix": 1795105493.119736,
+    "uid": "CNtEQM3KUKsQ7PUMhg",
+    "src_ip": "192.168.100.5",
+    "src_port": 60253,
+    "dst_ip": "192.168.100.1",
+    "dst_port": 53,
+    "protocol": "udp",
+    "domain": "ws.chatgpt.com",
+    "query_type": "A",
+    "response_code": "NOERROR",
+    "answers": [
+      "104.18.39.21",
+      "172.64.148.235"
+    ]
+  }
+]

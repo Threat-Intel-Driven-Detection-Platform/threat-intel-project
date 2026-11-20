@@ -1,0 +1,14 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	quic
+#open	2026-11-19-18-33-40
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	client_initial_dcid	client_scid	server_scid	server_name	client_protocol	history
+#types	time	string	addr	port	addr	port	string	string	string	string	string	string	string
+1795105501.831830	CRp43n3KBebkkaYpg	192.168.100.5	64678	102.132.103.60	443	1	712ec56144349fc6	(empty)	a10034110d176701	web.whatsapp.com	h3	IISZZishIHh
+1795105498.705326	CULyy5tQcqj1K0FZj	192.168.100.5	56596	192.178.204.93	443	1	399b781b576adbc0	(empty)	f99b781b576adbc0	safebrowsing.google.com	h3	IIISZiiiiishH
+1795105479.055382	CFVlMm4SVMdBdPxBhj	192.168.100.5	63462	192.178.203.113	443	1	163a10deea95ba51	(empty)	f63a10deea95ba51	encrypted-tbn0.gstatic.com	h3	IISiiiisIhhIHH
+1795105470.923009	CKywiNEWxBl2kkaug	192.168.100.5	52467	162.159.135.233	443	1	81a3faafeaa3ed7d	(empty)	01a2156dda632a9777a2246cd864ad9777ff2868	cloudflare-ech.com	h3	IISiishhIIHH
+1795105462.482209	CkiMju3ayymqDjTUn2	192.168.100.5	57282	142.251.153.120	443	1	0beecb8268e43b58	(empty)	ebeecb8268e43b58	ssl.gstatic.com	h3	IIISZZiiiiisIhhHH
+#close	2026-11-19-18-33-40

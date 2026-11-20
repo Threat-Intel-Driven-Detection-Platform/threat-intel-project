@@ -1,0 +1,40 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	kerberos
+#open	2026-11-20-00-47-34
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	request_type	client	service	success	error_msg	from	till	cipher	forwardable	renewable	client_cert_subject	client_cert_fuid	server_cert_subject	server_cert_fuid
+#types	time	string	addr	port	addr	port	string	string	string	bool	string	time	time	string	bool	bool	string	string	string	string
+1737575110.898220	CGpP4b2BEZRvWEFlw5	10.1.17.215	50091	10.1.17.2	88	AS	shutchenson/BLUEMOONTUESDAY	krbtgt/BLUEMOONTUESDAY	F	KDC_ERR_PREAUTH_REQUIRED	-	4.124486885e+09	-	T	T	-	-	-	-
+1737575110.904859	CDPJCDyBS1ettZL03	10.1.17.215	50092	10.1.17.2	88	AS	shutchenson/BLUEMOONTUESDAY	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575110.908264	Cuaqww2KC79QN1FxTl	10.1.17.215	50093	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	host/desktop-l8c5gsj.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575111.058340	Cne0MU2VUg4iK1cd94	10.1.17.215	50096	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	LDAP/WIN-GSH54QLW48D.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575124.509459	CO2eku2BqAcQynrot6	10.1.17.215	50125	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+1737575412.945942	CrbrSr3napYqnKRBCe	10.1.17.215	50205	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	ldap/win-gsh54qlw48d.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575619.131092	C8oRa2ilITXj3iq38	10.1.17.215	50226	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	cifs/WIN-GSH54QLW48D.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575619.135385	ChOhzI37tdcEppF6H7	10.1.17.215	50227	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575702.802262	Clj7FykFJO1CtO3v4	10.1.17.215	49678	10.1.17.2	88	AS	desktop-l8c5gsj$/bluemoontuesday.com	krbtgt/bluemoontuesday.com	F	KDC_ERR_PREAUTH_REQUIRED	-	4.124486885e+09	-	T	T	-	-	-	-
+1737575702.811544	C4uJv53YJqhgIAKw07	10.1.17.215	49679	10.1.17.2	88	AS	desktop-l8c5gsj$/bluemoontuesday.com	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575702.817076	CyuaExqr6s7kJQIle	10.1.17.215	49680	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	ldap/win-gsh54qlw48d.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575710.644522	CZNvIH1JP7XQ0UaThl	10.1.17.215	49699	10.1.17.2	88	AS	desktop-l8c5gsj$/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	F	KDC_ERR_PREAUTH_REQUIRED	-	4.124486885e+09	-	T	T	-	-	-	-
+1737575710.653952	CRhNJFLlsNXAsqSK6	10.1.17.215	49700	10.1.17.2	88	AS	desktop-l8c5gsj$/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575710.658212	CfORcK1NxVs7am34o7	10.1.17.215	49701	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	LDAP/WIN-GSH54QLW48D.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575710.677288	C2N5ue1PzWSC51hPjf	10.1.17.215	49704	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	LDAP/WIN-GSH54QLW48D.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575729.566699	Cawpv91trtc6rKd8B4	10.1.17.215	49744	10.1.17.2	88	AS	shutchenson/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	F	KDC_ERR_PREAUTH_REQUIRED	-	4.124486885e+09	-	T	T	-	-	-	-
+1737575729.573368	Clr9IiBeuafKOGN6a	10.1.17.215	49745	10.1.17.2	88	AS	shutchenson/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575729.576611	COayTf4J5TTqM50kBa	10.1.17.215	49746	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	LDAP/WIN-GSH54QLW48D.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575619.137361	CUzfnn3eJdUlY09kNl	10.1.17.215	50225	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+1737575746.565923	CpwnfA47A4Gbmq2C3d	10.1.17.215	49752	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	netlogon/WIN-GSH54QLW48D.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575760.990061	CVtdMF4SnJuraQSZu3	10.1.17.215	49758	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	cifs/WIN-GSH54QLW48D.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575760.994383	CY64uo3mBhIzDK6qK2	10.1.17.215	49759	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575762.876645	CojFJ51Yt4MfVdQZ07	10.1.17.215	49765	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	DESKTOP-L8C5GSJ$	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575762.894762	Cdlh3h1ehJiMG0Tue8	10.1.17.215	49767	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	cifs/WIN-GSH54QLW48D.bluemoontuesday.com/bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575762.897289	Cj8sNK1w8AWegIBDl2	10.1.17.215	49768	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	krbtgt/BLUEMOONTUESDAY.COM	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575780.416460	CtM5dV2CWrtT8qAuRh	10.1.17.215	49773	10.1.17.2	88	TGS	shutchenson/BLUEMOONTUESDAY.COM	ldap/win-gsh54qlw48d.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737575760.996926	C2dqpl3vut9EPgAIM1	10.1.17.215	49757	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+1737576661.003245	CrifqRXp7i18LJNw7	10.1.17.215	49860	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+1737577560.999961	CaVcdE4Wt6s1QlHBxd	10.1.17.215	49911	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+1737577689.898423	CtXpcK12X0RyFRP89e	10.1.17.215	49917	10.1.17.2	88	TGS	DESKTOP-L8C5GSJ$/BLUEMOONTUESDAY.COM	cifs/WIN-GSH54QLW48D.bluemoontuesday.com	T	-	-	4.124486885e+09	aes256-cts-hmac-sha1-96	T	T	-	-	-	-
+1737577689.903718	CfTHzB3i2G970WTqac	10.1.17.215	49916	10.1.17.2	445	-	-	-	-	-	-	-	-	-	-	-	-	-	-
+#close	2026-11-20-00-47-35
