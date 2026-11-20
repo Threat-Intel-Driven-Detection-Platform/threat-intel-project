@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2026-11-20T10:00:00+00:00",
+    "src_ip": "192.0.2.20",
+    "dst_ip": "192.0.2.53",
+    "domain": "example.org",
+    "protocol": "udp",
+    "evidence_source": "dns.log",
+    "event_type": "normal_dns",
+    "test_note": "Unrelated domain; no IOC match_id"
+  },
+  {
+    "timestamp": "2026-11-20T10:01:00+00:00",
+    "src_ip": "192.0.2.30",
+    "dst_ip": "192.0.2.40",
+    "protocol": "tcp",
+    "event_type": "normal_network_traffic",
+    "test_note": "No IOC evidence and no match_id"
+  }
+]

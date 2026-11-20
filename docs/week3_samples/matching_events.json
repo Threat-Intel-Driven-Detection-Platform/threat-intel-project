@@ -1,0 +1,24 @@
+[
+  {
+    "match_id": "M-f9da8a4f0b873bda",
+    "timestamp": "2026-11-17T00:00:01+00:00",
+    "indicator": "evil-lab.test",
+    "indicator_type": "domain",
+    "source": "SyntheticLab",
+    "evidence_source": "dns.log",
+    "src_ip": "192.0.2.10",
+    "dst_ip": "192.0.2.53",
+    "domain": "EVIL-LAB.TEST.",
+    "port": 53,
+    "match_type": "EXACT_DOMAIN",
+    "matched_field": "domain",
+    "ioc_value": "evil-lab.test",
+    "ioc_type": "domain",
+    "threat_type": "test_domain",
+    "malware": null,
+    "confidence": 95,
+    "ioc_first_seen": "2026-11-01",
+    "uid": "DNS-EXACT-01",
+    "protocol": "udp"
+  }
+]
