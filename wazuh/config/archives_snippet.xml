@@ -1,0 +1,3 @@
+﻿<!-- Set this inside the existing <global> section -->
+
+<logall_json>yes</logall_json>
