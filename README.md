@@ -44,3 +44,30 @@ To get real hits: use a PCAP from the same period as the feed (or a fresh malwar
 - `run_pipeline.py`: one command, checks Git-LFS pointers, validates the sample IOCs.
 - Collectors no longer overwrite good raw data with an error response (the old ThreatFox run left `{"query_status":"unknown_auth_key"}` in `threatfox_raw.json`, which crashes the normalizer); clear errors, CWD-independent paths.
 - Zeek README record counts corrected (they included the 9 header/footer lines).
+
+## Week 3 – Testing, Validation & Documentation
+
+### Test Case Preparation
+Test cases are documented in `docs/week3_test_cases.md`, covering:
+- Matching IOC events.
+- Non-matching events.
+- Severity-level scenarios.
+
+### Risk Scoring Validation
+See `docs/week3_risk_validation.md` for the scoring logic review and available validation results.
+
+- Risk scoring unit tests: 10/10 PASS.
+- 15 PCAP detections reviewed.
+- 17 synthetic detections reviewed.
+- Risk scores are prioritization indicators, not proof of compromise.
+
+### MITRE ATT&CK Validation
+See `docs/week3_mitre_validation.md`.
+
+- 15 detections reviewed.
+- No confirmed MITRE techniques.
+- T1071.001 and T1071.004 remain candidates only.
+- No technique is reported as detected without supporting evidence.
+
+### Wazuh Testing Status
+Wazuh rule execution and dashboard validation remain pending because the Wazuh VM is not accessible in the current testing environment. These tests are documented as pending and are not reported as passed.
