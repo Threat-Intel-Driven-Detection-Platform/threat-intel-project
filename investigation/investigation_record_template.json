@@ -1,0 +1,27 @@
+﻿{
+  "investigation_id": "",
+  "match_id": "",
+  "timestamp": "",
+  "status": "new",
+  "detection": {},
+  "wazuh": {
+    "rule_id": null,
+    "alert_level": null,
+    "description": ""
+  },
+  "risk_assessment": {
+    "risk_score": null,
+    "risk_level": "",
+    "reasons": []
+  },
+  "mitre_attack": {
+    "technique_id": null,
+    "technique_name": null,
+    "mapping_status": "not_assigned",
+    "evidence": []
+  },
+  "evidence": [],
+  "limitations": [],
+  "analyst_notes": "",
+  "disposition": ""
+}

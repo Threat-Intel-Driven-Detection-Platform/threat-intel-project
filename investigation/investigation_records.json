@@ -1,0 +1,977 @@
+[
+  {
+    "investigation_id": "INV-M-ea94aee15cb01e5a",
+    "created_at": "2026-11-19T20:27:37.360243+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-ea94aee15cb01e5a",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CKN6Ou2cz6kfUk5sY"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-63faad05960cb25b",
+    "created_at": "2026-11-19T20:27:37.360410+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-63faad05960cb25b",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CGjUgG29hkaHfhogTc"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-c84c1f5ee43f1eff",
+    "created_at": "2026-11-19T20:27:37.360425+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-c84c1f5ee43f1eff",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "C4pqIw3ES942Izabei"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-7cc0f7dcb3a4b687",
+    "created_at": "2026-11-19T20:27:37.360435+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-7cc0f7dcb3a4b687",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CC8hAqyzt62L4cDR5"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-8cb8e778e593b6d8",
+    "created_at": "2026-11-19T20:27:37.360443+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-8cb8e778e593b6d8",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CF3HeL2I8wEeNN2iL1"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-cd01975014f06a2e",
+    "created_at": "2026-11-19T20:27:37.360480+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-cd01975014f06a2e",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "Cr7RbI2tVqL5xLZn1b"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-9a67d6897ed36335",
+    "created_at": "2026-11-19T20:27:37.360531+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-9a67d6897ed36335",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CClVEf2I4bHphLGUKk"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-337ceee99cf39c54",
+    "created_at": "2026-11-19T20:27:37.360580+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-337ceee99cf39c54",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CBMYNkt6BfRbY62T8"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-cc7f838980139f27",
+    "created_at": "2026-11-19T20:27:37.360591+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-cc7f838980139f27",
+      "indicator": "130.12.180.42",
+      "indicator_type": "ip",
+      "threat_type": "payload_delivery",
+      "confidence": 75,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "130.12.180.42",
+      "port": 25565,
+      "protocol": "tcp",
+      "zeek_uid": "CHC70r1Gsw11X5heY9"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100501",
+      "expected_rule_level": 8,
+      "expected_rule_description": "Payload delivery IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 73,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 56,
+        "maximum_raw_score": 77,
+        "confidence_points": 24,
+        "threat_type_points": 12,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (75-89): +24",
+          "Threat type (payload_delivery): +12",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-a941800d13890486",
+    "created_at": "2026-11-19T20:27:37.360629+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-a941800d13890486",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "CfXhxc1NOxgjEs4yc"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-5ac6fbc59cc1bf6e",
+    "created_at": "2026-11-19T20:27:37.360641+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-5ac6fbc59cc1bf6e",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "Cc9ncB2WNZQcJPPqAh"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-06399f16fcd1f950",
+    "created_at": "2026-11-19T20:27:37.360651+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-06399f16fcd1f950",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "C0zdiL3NOqbITF5Ohl"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": 0,
+      "resp_bytes": 0,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-ac5661f350b17150",
+    "created_at": "2026-11-19T20:27:37.360697+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-ac5661f350b17150",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "CdGgTE7M5BzohQRr"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-913bec9d3308652f",
+    "created_at": "2026-11-19T20:27:37.360759+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-913bec9d3308652f",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "C8BHXWjGEzZJSMr4c"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  },
+  {
+    "investigation_id": "INV-M-f20b1964769cada7",
+    "created_at": "2026-11-19T20:27:37.360772+00:00",
+    "status": "open",
+    "detection": {
+      "match_id": "M-f20b1964769cada7",
+      "indicator": "178.104.232.30",
+      "indicator_type": "ip",
+      "threat_type": "botnet_cc",
+      "confidence": 50,
+      "match_type": "EXACT_IP_PORT",
+      "source": "ThreatFox",
+      "evidence_source": "conn.log",
+      "src_ip": "192.168.100.5",
+      "dst_ip": "178.104.232.30",
+      "port": 15766,
+      "protocol": "tcp",
+      "zeek_uid": "CAk5Qz2viMOhELHVw2"
+    },
+    "wazuh": {
+      "decoder": "json",
+      "expected_rule_id": "100502",
+      "expected_rule_level": 7,
+      "expected_rule_description": "Botnet C2 IOC match detected",
+      "alert_verified_for_this_event": false,
+      "note": "Expected rule mapping based on detection attributes; an actual Wazuh alert for this individual PCAP event was not verified."
+    },
+    "supporting_evidence": {
+      "connection_state": "S0",
+      "orig_bytes": null,
+      "resp_bytes": null,
+      "connection_record_found": true
+    },
+    "risk_assessment": {
+      "risk_score": 60,
+      "risk_level": "High",
+      "risk_score_details": {
+        "raw_score": 46,
+        "maximum_raw_score": 77,
+        "confidence_points": 16,
+        "threat_type_points": 10,
+        "match_type_points": 20,
+        "network_evidence_points": 0,
+        "reasons": [
+          "Confidence (50-74): +16",
+          "Threat type (botnet_cc): +10",
+          "Match type (EXACT_IP_PORT): +20",
+          "Network evidence: +0. S0: no reply observed; no connection activity points."
+        ],
+        "interpretation": "IOC correlation priority. This score does not prove successful compromise or payload execution."
+      }
+    },
+    "mitre": {
+      "mapping_status": "not_confirmed",
+      "confirmed_techniques": [],
+      "reason": "IOC match and unanswered S0 connection do not independently establish an ATT&CK behavior."
+    },
+    "analyst_conclusion": "Suspicious threat-intelligence IOC correlation observed. The associated connection state is S0; no response or payload execution is established by the available evidence.",
+    "limitations": [
+      "IOC reputation is not proof of compromise.",
+      "S0 indicates no reply was observed.",
+      "No payload execution is demonstrated by these records.",
+      "MITRE ATT&CK technique remains unconfirmed."
+    ]
+  }
+]
