@@ -1,0 +1,179 @@
+﻿import json
+import os
+import sys
+from pathlib import Path
+from datetime import datetime, timezone
+from urllib.parse import urljoin, urlparse
+
+import requests
+
+
+ROOT = Path(__file__).resolve().parent.parent
+
+OUTPUT_FILE = ROOT / "data" / "otx_raw.json"
+METADATA_FILE = ROOT / "data" / "otx_collection_metadata.json"
+
+URL = "https://otx.alienvault.com/api/v1/pulses/subscribed"
+API_KEY = os.getenv("OTX_API_KEY")
+
+TIMEOUT = (15, 90)
+MAX_PAGES = 10000
+
+
+def validate_next_url(next_url):
+    if not next_url:
+        return None
+
+    full_url = urljoin(URL, next_url)
+    parsed = urlparse(full_url)
+
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname != "otx.alienvault.com"
+    ):
+        raise ValueError(f"Unexpected OTX pagination URL: {full_url}")
+
+    return full_url
+
+
+def main():
+    if not API_KEY:
+        sys.exit("OTX_API_KEY is not set.")
+
+    all_pulses = []
+    visited_urls = set()
+    current_url = URL
+    page_count = 0
+    api_total_count = None
+
+    try:
+        with requests.Session() as session:
+            session.headers.update({
+                "X-OTX-API-KEY": API_KEY,
+                "Accept": "application/json",
+                "User-Agent": "ThreatIntel-Platform/1.0",
+            })
+
+            while current_url:
+                if current_url in visited_urls:
+                    raise RuntimeError(
+                        "Pagination loop detected. Stopping collection."
+                    )
+
+                if page_count >= MAX_PAGES:
+                    raise RuntimeError(
+                        f"Maximum page limit reached: {MAX_PAGES}"
+                    )
+
+                visited_urls.add(current_url)
+                page_count += 1
+
+                print(f"Fetching OTX page {page_count}...")
+
+                response = session.get(
+                    current_url,
+                    timeout=TIMEOUT
+                )
+
+                print("Status Code:", response.status_code)
+                response.raise_for_status()
+
+                try:
+                    page_data = response.json()
+                except ValueError as exc:
+                    raise ValueError(
+                        f"OTX returned invalid JSON on page {page_count}."
+                    ) from exc
+
+                if not isinstance(page_data, dict):
+                    raise ValueError(
+                        f"Invalid response structure on page {page_count}."
+                    )
+
+                results = page_data.get("results")
+
+                if not isinstance(results, list):
+                    raise ValueError(
+                        f"Missing or invalid results on page {page_count}."
+                    )
+
+                for pulse in results:
+                    if not isinstance(pulse, dict):
+                        raise ValueError(
+                            f"Invalid pulse object on page {page_count}."
+                        )
+
+                    if not isinstance(pulse.get("indicators"), list):
+                        raise ValueError(
+                            f"Invalid indicators in pulse on page {page_count}."
+                        )
+
+                all_pulses.extend(results)
+
+                if page_count == 1:
+                    api_total_count = page_data.get("count")
+
+                next_url = page_data.get("next")
+
+                if next_url is not None and not isinstance(next_url, str):
+                    raise ValueError("Invalid OTX next-page URL.")
+
+                current_url = validate_next_url(next_url)
+
+                print(
+                    f"Page {page_count}: {len(results)} pulses | "
+                    f"Total collected: {len(all_pulses)}"
+                )
+
+        if not all_pulses:
+            raise RuntimeError(
+                "OTX returned zero pulses. Existing raw data was preserved."
+            )
+
+        collected_at = datetime.now(timezone.utc).isoformat()
+
+        raw_data = {
+            "count": len(all_pulses),
+            "next": None,
+            "previous": None,
+            "results": all_pulses,
+        }
+
+        metadata = {
+            "source": "OTX",
+            "endpoint": URL,
+            "collected_at": collected_at,
+            "pages_collected": page_count,
+            "pulses_collected": len(all_pulses),
+            "api_reported_count": api_total_count,
+        }
+
+        OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+        raw_temp = OUTPUT_FILE.with_suffix(".tmp")
+        metadata_temp = METADATA_FILE.with_suffix(".tmp")
+
+        with raw_temp.open("w", encoding="utf-8") as f:
+            json.dump(raw_data, f, indent=4, ensure_ascii=False)
+
+        with metadata_temp.open("w", encoding="utf-8") as f:
+            json.dump(metadata, f, indent=4, ensure_ascii=False)
+
+        raw_temp.replace(OUTPUT_FILE)
+        metadata_temp.replace(METADATA_FILE)
+
+        print("\n========== OTX COLLECTION SUCCESS ==========")
+        print("Pages collected:", page_count)
+        print("Pulses collected:", len(all_pulses))
+        print("API reported count:", api_total_count)
+        print("Collected at:", collected_at)
+        print("Raw data:", OUTPUT_FILE)
+        print("Metadata:", METADATA_FILE)
+        print("============================================")
+
+    except (requests.exceptions.RequestException, ValueError, RuntimeError) as exc:
+        sys.exit(f"OTX collection failed: {exc}")
+
+
+if __name__ == "__main__":
+    main()

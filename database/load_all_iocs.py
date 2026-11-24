@@ -1,4 +1,4 @@
-import argparse
+﻿import argparse
 import hashlib
 import json
 import sqlite3
@@ -23,18 +23,12 @@ def main():
     parser.add_argument(
         "--database",
         type=Path,
-        default=DEFAULT_DATABASE,
-        help="Target SQLite database path."
+        default=DEFAULT_DATABASE
     )
     args = parser.parse_args()
 
-    database_file = args.database.resolve()
-
-    if not INPUT_FILE.exists():
-        raise FileNotFoundError(INPUT_FILE)
-
-    if not DERIVED_FILE.exists():
-        raise FileNotFoundError(DERIVED_FILE)
+    if not INPUT_FILE.exists() or not DERIVED_FILE.exists():
+        raise FileNotFoundError("Required input JSON file is missing.")
 
     with INPUT_FILE.open("r", encoding="utf-8") as f:
         iocs = json.load(f)
@@ -42,6 +36,37 @@ def main():
     with DERIVED_FILE.open("r", encoding="utf-8") as f:
         observables = json.load(f)
 
+    if not isinstance(iocs, list) or not isinstance(observables, list):
+        raise ValueError("Input files must contain JSON lists.")
+
+    # Validate source identities before touching the database.
+    seen_ids = set()
+    seen_refs = set()
+
+    for item in iocs:
+        source = item.get("source")
+        ioc_id = item.get("id")
+        ioc = item.get("ioc")
+        ioc_type = item.get("ioc_type")
+
+        if not all(
+            value is not None and str(value).strip()
+            for value in (source, ioc_id, ioc, ioc_type)
+        ):
+            raise ValueError(f"Invalid original IOC record: {item}")
+
+        identity = (source, str(ioc_id))
+        if identity in seen_ids:
+            raise ValueError(f"Duplicate source ID: {identity}")
+        seen_ids.add(identity)
+
+        if str(ioc_type).lower() == "url":
+            ref = make_original_ref(source, ioc_id, ioc)
+            if ref in seen_refs:
+                raise ValueError(f"Duplicate original URL reference: {ref}")
+            seen_refs.add(ref)
+
+    database_file = args.database.resolve()
     database_file.parent.mkdir(parents=True, exist_ok=True)
 
     conn = sqlite3.connect(database_file)
@@ -50,14 +75,12 @@ def main():
     try:
         conn.execute("BEGIN")
 
-        # Remove old tables in dependency order.
         conn.execute("DROP TABLE IF EXISTS derived_observables")
         conn.execute("DROP TABLE IF EXISTS iocs")
 
-        # Recreate the original IOC table.
         conn.execute("""
             CREATE TABLE iocs (
-                id TEXT,
+                id TEXT NOT NULL,
                 ioc TEXT NOT NULL,
                 ioc_type TEXT NOT NULL,
                 source TEXT NOT NULL,
@@ -68,24 +91,20 @@ def main():
                 last_seen TEXT,
                 reporter TEXT,
                 tags TEXT,
-                original_ioc_ref TEXT,
-                UNIQUE(ioc, ioc_type, source)
+                original_ioc_ref TEXT UNIQUE,
+                UNIQUE(source, id)
             )
         """)
 
-        # Insert original IOCs.
         for item in iocs:
-            ioc_type = item.get("ioc_type")
-            source = item.get("source")
-            ioc = item.get("ioc")
-            ioc_id = item.get("id")
+            ioc_type = item["ioc_type"]
+            source = item["source"]
+            ioc = item["ioc"]
+            ioc_id = str(item["id"])
 
             original_ref = None
-
-            if ioc_type and ioc_type.lower() == "url":
-                original_ref = make_original_ref(
-                    source, ioc_id, ioc
-                )
+            if str(ioc_type).lower() == "url":
+                original_ref = make_original_ref(source, ioc_id, ioc)
 
             tags = item.get("tags")
             tags_json = (
@@ -94,7 +113,7 @@ def main():
             )
 
             conn.execute("""
-                INSERT OR IGNORE INTO iocs (
+                INSERT INTO iocs (
                     id, ioc, ioc_type, source,
                     threat_type, malware, confidence,
                     first_seen, last_seen, reporter,
@@ -116,13 +135,6 @@ def main():
                 original_ref
             ))
 
-        # Restore the unique reference index.
-        conn.execute("""
-            CREATE UNIQUE INDEX idx_iocs_original_ioc_ref
-            ON iocs(original_ioc_ref)
-        """)
-
-        # Build the set of references that actually exist.
         valid_refs = {
             row[0]
             for row in conn.execute("""
@@ -132,7 +144,6 @@ def main():
             """)
         }
 
-        # Recreate the derived observables table.
         conn.execute("""
             CREATE TABLE derived_observables (
                 observable_id TEXT PRIMARY KEY,
@@ -144,23 +155,16 @@ def main():
             )
         """)
 
-        # Import derived observables.
-        inserted = 0
-
         for item in observables:
             ref = item["original_ioc_ref"]
 
             if ref not in valid_refs:
-                raise ValueError(
-                    f"Missing original IOC reference: {ref}"
-                )
+                raise ValueError(f"Missing original IOC reference: {ref}")
 
-            cursor = conn.execute("""
-                INSERT OR IGNORE INTO derived_observables (
-                    observable_id,
-                    observable,
-                    observable_type,
-                    original_ioc_ref
+            conn.execute("""
+                INSERT INTO derived_observables (
+                    observable_id, observable,
+                    observable_type, original_ioc_ref
                 )
                 VALUES (?, ?, ?, ?)
             """, (
@@ -170,9 +174,6 @@ def main():
                 ref
             ))
 
-            inserted += cursor.rowcount
-
-        # Validate before committing.
         original_count = conn.execute(
             "SELECT COUNT(*) FROM iocs"
         ).fetchone()[0]
@@ -185,11 +186,6 @@ def main():
             "PRAGMA foreign_key_check"
         ).fetchall()
 
-        if foreign_key_errors:
-            raise RuntimeError(
-                f"Foreign key validation failed: {foreign_key_errors[:5]}"
-            )
-
         missing_refs = conn.execute("""
             SELECT COUNT(*)
             FROM derived_observables d
@@ -198,9 +194,10 @@ def main():
             WHERE i.original_ioc_ref IS NULL
         """).fetchone()[0]
 
-        if missing_refs:
+        if foreign_key_errors or missing_refs:
             raise RuntimeError(
-                f"Found {missing_refs} orphan derived records."
+                f"Validation failed: FK={foreign_key_errors}, "
+                f"missing_refs={missing_refs}"
             )
 
         conn.commit()
@@ -209,7 +206,6 @@ def main():
         print("Database:", database_file)
         print("Original IOCs:", original_count)
         print("Derived observables:", derived_count)
-        print("New derived records inserted:", inserted)
         print("Missing references:", missing_refs)
         print("Foreign key errors:", len(foreign_key_errors))
         print("=====================================")

@@ -1,59 +1,91 @@
-import json
+﻿import json
+from pathlib import Path
+from collections import Counter, defaultdict
 
-THREATFOX_FILE = "data/threatfox_normalized.json"
-URLHAUS_FILE = "data/urlhaus_normalized.json"
-OTX_FILE = "data/otx_normalized.json"
+ROOT = Path(__file__).resolve().parent.parent
 
-OUTPUT_FILE = "data/all_iocs.json"
+INPUT_FILES = {
+    "ThreatFox": ROOT / "data" / "threatfox_normalized.json",
+    "URLhaus": ROOT / "data" / "urlhaus_normalized.json",
+    "OTX": ROOT / "data" / "otx_normalized.json",
+}
+
+OUTPUT_FILE = ROOT / "data" / "all_iocs.json"
+
+all_iocs = []
+seen_ids = set()
+
+for source, path in INPUT_FILES.items():
+    if not path.exists():
+        raise FileNotFoundError(path)
+
+    with path.open("r", encoding="utf-8") as f:
+        records = json.load(f)
+
+    if not isinstance(records, list):
+        raise ValueError(f"{path.name} must contain a JSON list.")
+
+    print(f"{source}: {len(records)} records")
+
+    for index, item in enumerate(records):
+        if not isinstance(item, dict):
+            raise ValueError(f"Invalid record in {path.name}: {index}")
+
+        for field in ("id", "ioc", "ioc_type", "source"):
+            value = item.get(field)
+            if value is None or not str(value).strip():
+                raise ValueError(
+                    f"Missing {field} in {path.name}, record {index}"
+                )
+
+        if item["source"] != source:
+            raise ValueError(
+                f"Source mismatch in {path.name}, record {index}"
+            )
+
+        key = (source, str(item["id"]))
+
+        if key in seen_ids:
+            raise ValueError(f"Duplicate source ID detected: {key}")
+
+        seen_ids.add(key)
+        all_iocs.append(item)
 
 
-# Load ThreatFox IOCs
-with open(THREATFOX_FILE, "r", encoding="utf-8") as f:
-    threatfox_iocs = json.load(f)
+# Count repeated IOC values efficiently.
+ioc_counts = Counter(
+    (item["source"], item["ioc"], item["ioc_type"])
+    for item in all_iocs
+)
 
+same_source_repeated = sum(
+    count - 1 for count in ioc_counts.values() if count > 1
+)
 
-# Load URLhaus IOCs
-with open(URLHAUS_FILE, "r", encoding="utf-8") as f:
-    urlhaus_iocs = json.load(f)
-
-
-# Load OTX IOCs
-with open(OTX_FILE, "r", encoding="utf-8") as f:
-    otx_iocs = json.load(f)
-
-
-# Merge all sources
-all_iocs = threatfox_iocs + urlhaus_iocs + otx_iocs
-
-
-# Deduplicate IOCs
-unique_iocs = []
-seen = set()
-duplicates = 0
-
+source_groups = defaultdict(set)
 
 for item in all_iocs:
+    source_groups[(item["ioc"], item["ioc_type"])].add(item["source"])
 
-    key = (item["ioc"], item["ioc_type"])
-
-    if key in seen:
-        duplicates += 1
-        continue
-
-    seen.add(key)
-    unique_iocs.append(item)
+cross_source = sum(
+    1 for sources in source_groups.values() if len(sources) > 1
+)
 
 
-# Save merged and deduplicated data
-with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    json.dump(unique_iocs, f, indent=4)
+# Save only after all validation succeeds.
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+temp_file = OUTPUT_FILE.with_suffix(".tmp")
 
+with temp_file.open("w", encoding="utf-8") as f:
+    json.dump(all_iocs, f, indent=2, ensure_ascii=False)
 
-# Results
-print(f"ThreatFox IOCs: {len(threatfox_iocs)}")
-print(f"URLhaus IOCs: {len(urlhaus_iocs)}")
-print(f"OTX IOCs: {len(otx_iocs)}")
-print(f"Total before deduplication: {len(all_iocs)}")
-print(f"Unique IOCs: {len(unique_iocs)}")
-print(f"Duplicates removed: {duplicates}")
-print(f"Saved to {OUTPUT_FILE}")
+temp_file.replace(OUTPUT_FILE)
+
+print("\n========== MERGE REPORT ==========")
+print("Total records preserved:", len(all_iocs))
+print("Duplicate source IDs:", 0)
+print("Repeated IOC records within same source:", same_source_repeated)
+print("IOCs shared across sources:", cross_source)
+print("Records by source:", dict(Counter(x["source"] for x in all_iocs)))
+print("Saved:", OUTPUT_FILE)
+print("==================================")

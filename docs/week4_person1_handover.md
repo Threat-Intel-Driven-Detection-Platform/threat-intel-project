@@ -1,387 +1,253 @@
-\# Week 4 - Person 1 Handover
+# Week 4 - Person 1 Handover
+## Threat Intelligence, IOC Normalization & Database
 
-\## Threat Intelligence, IOC Normalization \& Database
-
-
-
-\### 1. Completed Work
-
-
+### 1. Completed Work
 
 Person 1 completed the following tasks:
 
+- Collected and normalized threat intelligence from URLhaus, ThreatFox, and AlienVault OTX.
+- Validated IOC records and preserved source-specific record identities.
+- Updated the merge process to identify records using `(source, id)`, preserving separate observations even when IOC values are repeated.
+- Extracted IP addresses, domains, and explicit ports from original URL IOCs.
+- Preserved data provenance using `original_ioc_ref`.
+- Added the `derived_observables` table to the SQLite database.
+- Generated IOC distribution and data quality reports.
+- Documented the database schema and relationships.
+- Implemented and tested a complete database rebuild script.
 
+### 2. Current Dataset Statistics
 
-\- Extracted IP addresses, domains, and explicit ports from original URL IOCs.
+The following figures represent the current production database.
 
-\- Preserved data provenance using `original\_ioc\_ref`.
-
-\- Added the `derived\_observables` table to the SQLite database.
-
-\- Generated IOC distribution and data quality reports.
-
-\- Documented the database schema and relationships.
-
-\- Implemented and tested a complete database rebuild script.
-
-
-
-\### 2. Dataset Statistics
-
-
-
-\*\*Original IOCs: 35,707\*\*
-
-
+**Original IOCs: 119,989**
 
 | Source | Count |
-
 |---|---:|
+| OTX | 80,621 |
+| URLhaus | 33,209 |
+| ThreatFox | 6,159 |
+| **Total** | **119,989** |
 
-| URLhaus | 33,205 |
+**Original IOCs by Type**
 
-| ThreatFox | 1,967 |
+| IOC Type | Count |
+|---|---:|
+| URL | 38,479 |
+| Domain | 29,715 |
+| SHA256 | 18,023 |
+| MD5 | 9,428 |
+| SHA1 | 8,883 |
+| Hostname | 8,176 |
+| IP:Port | 5,138 |
+| CVE | 1,627 |
+| IP | 378 |
+| YARA | 88 |
+| Email | 49 |
+| SSL Certificate Fingerprint | 4 |
+| Bitcoin Address | 1 |
+| **Total** | **119,989** |
 
-| OTX | 535 |
+URL indicators account for approximately **32.07%** of original IOCs. URLhaus contributes the largest volume of URL indicators.
 
-| \*\*Total\*\* | \*\*35,707\*\* |
-
-
-
-\*\*Derived Observables: 46,028\*\*
-
-
+**Derived Observables: 51,192**
 
 | Type | Count |
-
 |---|---:|
-
-| IP | 15,509 |
-
-| Domain | 18,443 |
-
-| Port | 12,076 |
-
-| \*\*Total\*\* | \*\*46,028\*\* |
-
-
+| IP | 16,200 |
+| Domain | 22,279 |
+| Port | 12,713 |
+| **Total** | **51,192** |
 
 Derived observables originate from existing URL IOCs. They must not be counted as additional original feed IOCs.
 
-
-
-\### 3. Data Quality Findings
-
-
+### 3. Data Quality Findings
 
 | Check | Result |
-
 |---|---:|
-
 | Missing IOC | 0 |
-
 | Missing IOC Type | 0 |
-
 | Missing Source | 0 |
-
 | Missing Threat Type | 0 |
-
 | Missing First Seen | 0 |
-
-| Missing Confidence | 33,740 |
-
+| Missing Confidence | 113,830 |
 | Invalid Confidence | 0 |
-
-| Duplicate Original IOC Groups | 0 |
-
+| Duplicate Original IOC Groups | 4,443 |
 | Missing Derived Observable | 0 |
-
 | Missing Derived Type | 0 |
-
 | Missing Original Reference | 0 |
 
-
-
-\*\*Confidence Availability by Source\*\*
-
-
+**Confidence Availability by Source**
 
 | Source | Total | Missing | Available |
-
 |---|---:|---:|---:|
-
-| URLhaus | 33,205 | 33,205 | 0 |
-
-| OTX | 535 | 535 | 0 |
-
-| ThreatFox | 1,967 | 0 | 1,967 |
-
-
+| OTX | 80,621 | 80,621 | 0 |
+| URLhaus | 33,209 | 33,209 | 0 |
+| ThreatFox | 6,159 | 0 | 6,159 |
 
 Missing confidence values are retained as `NULL`. No default confidence values are invented.
 
+**Duplicate IOC Groups**
 
+The 4,443 duplicate groups represent repeated IOC values under the report's grouping criteria. They do not mean that 4,443 records were deleted.
 
-\### 4. Database Structure
+The merge process preserves separate source records using `(source, id)` as the record identity.
 
-
+### 4. Database Structure
 
 The database contains two main tables:
 
+- `iocs`: Stores original threat intelligence indicators.
+- `derived_observables`: Stores IP addresses, domains, and ports extracted from original URLs.
 
+**Important database relationships:**
 
-\- `iocs`: Stores original threat intelligence indicators.
-
-\- `derived\_observables`: Stores IP addresses, domains, and ports extracted from original URLs.
-
-
-
-\*\*Relationship:\*\*
-
-
-
-`derived\_observables.original\_ioc\_ref` references `iocs.original\_ioc\_ref`.
-
-
+- Original IOC records are uniquely identified by `(source, id)`.
+- `original_ioc_ref` provides a stable reference to an original IOC.
+- `derived_observables.original_ioc_ref` references `iocs.original_ioc_ref`.
 
 Each derived observable can be traced back to its original URL IOC, including its source and threat metadata.
 
-
-
-\### 5. Handover to Person 2 - Detection Engine
-
-
+### 5. Handover to Person 2 - Detection Engine
 
 Person 2 should:
 
+1. Read original IOCs and derived observables from the SQLite database.
+2. Match derived IP observables against Zeek connection and HTTP host evidence.
+3. Match derived domains against DNS and HTTP host evidence.
+4. Use HTTP logs for URL and URI/path-level matching where available.
+5. Keep explicit ports contextual to their associated host and original URL.
+6. Preserve the original IOC reference and source in detection evidence.
+7. Consider IOC type support when implementing matching logic.
 
-
-1\. Read derived observables from the SQLite database.
-
-2\. Match derived IP observables against Zeek connection and HTTP host evidence.
-
-3\. Match derived domains against DNS and HTTP host evidence.
-
-4\. Use HTTP logs for URL and URI/path-level matching where available.
-
-5\. Keep explicit ports contextual to their associated host and original URL.
-
-6\. Preserve the original IOC reference and source in detection evidence.
-
-
-
-\*\*Important Notes:\*\*
-
-
-
-\- Do not match a port as a standalone malicious indicator.
-
-\- Extracted IPs and domains do not guarantee a match in the analyzed PCAP.
-
-\- Derived observables are not new independent feed IOCs.
-
-\- Detection results should retain traceability to the original IOC.
-
-
-
-\*\*Example SQL Query:\*\*
-
-
+**Example SQL Query**
 
 ```sql
-
 SELECT
-
-&#x20;   d.observable,
-
-&#x20;   d.observable\_type,
-
-&#x20;   i.ioc AS original\_ioc,
-
-&#x20;   i.source,
-
-&#x20;   i.threat\_type,
-
-&#x20;   i.confidence
-
-FROM derived\_observables d
-
+    d.observable,
+    d.observable_type,
+    i.ioc AS original_ioc,
+    i.source,
+    i.threat_type,
+    i.confidence,
+    i.original_ioc_ref
+FROM derived_observables d
 JOIN iocs i
-
-&#x20;   ON d.original\_ioc\_ref = i.original\_ioc\_ref;
-
+    ON d.original_ioc_ref = i.original_ioc_ref;
 ```
 
+**Important Notes**
 
+- Do not match a port as a standalone malicious indicator.
+- Extracted IPs and domains do not guarantee a match in the analyzed PCAP.
+- Extracted IP addresses are URL host values, not DNS-resolved addresses.
+- Derived observables are not new independent feed IOCs.
+- Detection results should retain traceability to the original IOC.
+- Full URL and URI matching requires suitable HTTP-level evidence.
 
-\### 6. Handover to Person 4 - Frontend and Reporting
-
-
+### 6. Handover to Person 4 - Frontend and Reporting
 
 Use the following statistics in dashboard summaries:
 
-
-
-\- Original IOCs: 35,707
-
-\- Derived observables: 46,028
-
-\- Derived IPs: 15,509
-
-\- Derived domains: 18,443
-
-\- Derived ports: 12,076
-
-
+- Original IOCs: **119,989**
+- Derived observables: **51,192**
+- Derived IPs: **16,200**
+- Derived domains: **22,279**
+- Derived ports: **12,713**
 
 The dashboard should distinguish:
 
+- Original feed IOCs.
+- Derived observables.
+- IOC source distribution.
+- IOC type distribution.
+- Data quality and missing confidence.
+- Collection scope and limitations.
 
+**Important:** Do not combine original and derived counts into one IOC total.
 
-\- Original feed IOCs.
+The dashboard should also make clear that the OTX dataset represents a partial collection, not the complete subscribed-pulses feed.
 
-\- Derived observables.
+### 7. OTX Collection Scope
 
-\- IOC source distribution.
+The OTX dataset used in the current report is a partial collection.
 
-\- IOC type distribution.
+- Pages collected: 390
+- Pulses collected: 1,950
+- Indicators normalized: 80,621
+- Collection status: Partial
 
-\- Data quality and missing confidence.
+Additional pages were available but were not collected. Therefore, OTX statistics represent the collected sample only and must not be interpreted as the complete OTX feed inventory.
 
-
-
-\*\*Important:\*\* Do not combine original and derived counts into one IOC total.
-
-
-
-\### 7. Database Rebuild Instructions
-
-
+### 8. Database Rebuild Instructions
 
 Run from the project root:
 
-
-
 ```powershell
-
-python database/load\_all\_iocs.py
-
+python database/load_all_iocs.py
 ```
 
+**Required input files:**
 
-
-\*\*Required input files:\*\*
-
-
-
-\- `data/all\_iocs.json`
-
-\- `data/url\_derived\_observables.json`
-
-
+- `data/all_iocs.json`
+- `data/url_derived_observables.json`
 
 To rebuild a separate test database:
 
-
-
 ```powershell
-
-python database/load\_all\_iocs.py --database data/threat\_intel\_rebuild\_test.db
-
+python database/load_all_iocs.py --database data/threat_intel_rebuild_test.db
 ```
 
+**Rebuild Process**
 
+1. Drops the old `derived_observables` table.
+2. Drops the old `iocs` table.
+3. Recreates `iocs` and imports original indicators.
+4. Creates the original IOC references and unique constraints.
+5. Recreates `derived_observables`.
+6. Imports derived observables.
+7. Validates foreign key integrity and missing references.
 
-\*\*Rebuild Process:\*\*
+**Important:** The rebuild process replaces the tables in the selected database. Always verify the database path before running it.
 
+### 9. Production Database Verification
 
-
-1\. Drops the old `derived\_observables` table.
-
-2\. Drops the old `iocs` table.
-
-3\. Recreates `iocs` and imports original indicators.
-
-4\. Creates `original\_ioc\_ref` and its unique index.
-
-5\. Recreates `derived\_observables`.
-
-6\. Imports derived observables.
-
-7\. Validates foreign key integrity and missing references.
-
-
-
-\### 8. Rebuild Test Results
-
-
-
-The rebuild process was executed twice on a separate test database.
-
-
-
-Both runs completed successfully:
-
-
+The current production database was verified successfully.
 
 | Validation | Result |
-
 |---|---:|
+| SQLite Integrity Check | `ok` |
+| Foreign Key Check | No errors |
+| Original IOCs | 119,989 |
+| Derived Observables | 51,192 |
 
-| Original IOCs | 35,707 |
+A separate test database was also used to validate the rebuild process. Its test counts belong to that test dataset and should not be confused with the current production counts.
 
-| Derived Observables | 46,028 |
-
-| Missing References | 0 |
-
-| Foreign Key Errors | 0 |
-
-
-
-The production database was not modified during these rebuild tests.
-
-
-
-\### 9. Deliverable Files
-
-
+### 10. Deliverable Files
 
 | File | Description |
-
 |---|---|
+| `collectors/otx_collector.py` | Collects OTX pulse data |
+| `normalization/threatfox_normalizer.py` | Normalizes ThreatFox records |
+| `normalization/merge_iocs.py` | Merges normalized IOC records |
+| `normalization/extract_url_observables.py` | Extracts IPs, domains, and ports from URLs |
+| `normalization/ioc_quality_report.py` | Generates IOC distribution and quality report |
+| `database/load_all_iocs.py` | Complete database rebuild script |
+| `data/all_iocs.json` | Merged original IOCs |
+| `data/url_derived_observables.json` | Extracted derived observables |
+| `data/threat_intel.db` | Production SQLite database |
+| `docs/week4_ioc_distribution_report.md` | IOC distribution and quality report |
+| `docs/database_schema_and_data_dictionary.md` | Database schema documentation |
 
-| `normalization/extract\_url\_observables.py` | Extracts IPs, domains, and ports from URLs |
+### 11. Important Notes
 
-| `normalization/ioc\_quality\_report.py` | Generates IOC quality report |
+- Use `load_all_iocs.py` as the complete database rebuild procedure.
+- Do not use the legacy `ioc_database.py` as a full rebuild procedure.
+- Keep both JSON input files available when rebuilding.
+- Preserve `(source, id)` as the original record identity.
+- Keep derived observables linked to their original IOC references.
+- Treat missing confidence values as `NULL`.
+- Coordinate future schema changes with the detection and integration teams.
 
-| `database/add\_derived\_observables.py` | Imports derived observables |
+---
 
-| `database/load\_all\_iocs.py` | Complete database rebuild script |
-
-| `data/url\_derived\_observables.json` | Extracted observables |
-
-| `docs/week4\_ioc\_distribution\_report.md` | IOC distribution and quality report |
-
-| `docs/database\_schema\_and\_data\_dictionary.md` | Database schema documentation |
-
-
-
-\### 10. Important Notes
-
-
-
-\- Use `load\_all\_iocs.py` as the complete database rebuild procedure.
-
-\- Do not use the legacy `ioc\_database.py` as a full rebuild procedure.
-
-\- Keep both JSON input files available when rebuilding.
-
-\- Coordinate future schema changes with the detection and integration team.
-
-
-
-\---
-
-
-
-\*\*Status: Person 1 - Week 4 Implementation and Handover Prepared\*\*</Writing
+**Status: Person 1 - Week 4 Implementation and Handover Prepared**

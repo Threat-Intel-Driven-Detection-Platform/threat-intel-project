@@ -1,0 +1,9 @@
+{
+  "source": "AlienVault OTX",
+  "endpoint": "https://otx.alienvault.com/api/v1/pulses/subscribed",
+  "collected_at": "2026-11-24T05:42:02.776189+00:00",
+  "pages_collected": 350,
+  "pulses_collected": 1750,
+  "api_reported_count": 9487,
+  "collection_complete": false
+}

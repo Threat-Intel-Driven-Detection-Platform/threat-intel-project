@@ -1,0 +1,773 @@
+﻿
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\collectors\otx_collector.py
+============================================================
+import json
+import os
+import sys
+from pathlib import Path
+
+import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_FILE = ROOT / "data" / "otx_raw.json"
+URL = "https://otx.alienvault.com/api/v1/pulses/subscribed"
+
+API_KEY = os.getenv("OTX_API_KEY")
+
+if not API_KEY:
+    sys.exit("OTX_API_KEY is not set")
+
+try:
+    response = requests.get(URL, headers={"X-OTX-API-KEY": API_KEY}, timeout=60)
+    print("Status Code:", response.status_code)
+
+    if response.status_code != 200:
+        sys.exit(f"Failed to download OTX data: {response.text[:200]}")
+
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(response.json(), f, indent=4)
+
+    print(f"OTX data saved to {OUTPUT_FILE}")
+
+except requests.exceptions.RequestException as e:
+    sys.exit(f"Request failed: {e}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\collectors\threatfox_collector.py
+============================================================
+import json
+import os
+import sys
+from pathlib import Path
+
+import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_FILE = ROOT / "data" / "threatfox_raw.json"
+API_URL = "https://threatfox-api.abuse.ch/api/v1/"
+
+auth_key = os.getenv("THREATFOX_AUTH_KEY")
+
+if not auth_key:
+    sys.exit("THREATFOX_AUTH_KEY is not set (get a free key from https://auth.abuse.ch/)")
+
+response = requests.post(
+    API_URL,
+    headers={"Auth-Key": auth_key},
+    json={"query": "get_iocs", "days": 1},
+    timeout=60,
+)
+
+print("Status Code:", response.status_code)
+
+data = response.json()
+
+# FIX: never overwrite good raw data with an error response
+# (previously a bad key produced {"query_status": "unknown_auth_key"} in threatfox_raw.json
+#  and broke the normalizer with KeyError: 'data')
+if data.get("query_status") != "ok":
+    sys.exit(f"ThreatFox returned query_status={data.get('query_status')!r} - raw file NOT overwritten")
+
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(data, f, indent=4)
+
+print(f"{len(data.get('data', []))} IOCs saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\collectors\urlhaus_collector.py
+============================================================
+import os
+import sys
+from pathlib import Path
+
+import requests
+
+ROOT = Path(__file__).resolve().parent.parent
+OUTPUT_FILE = ROOT / "data" / "urlhaus_raw.json"
+
+AUTH_KEY = os.getenv("URLHAUS_AUTH_KEY")
+
+if not AUTH_KEY:
+    sys.exit("URLHAUS_AUTH_KEY is not set")
+
+URL = f"https://urlhaus-api.abuse.ch/v2/files/exports/{AUTH_KEY}/recent.json"
+
+response = requests.get(URL, timeout=120)
+print("Status Code:", response.status_code)
+
+if response.status_code != 200:
+    sys.exit(f"Failed to download URLhaus data: {response.text[:200]}")
+
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+with open(OUTPUT_FILE, "wb") as f:
+    f.write(response.content)
+
+print(f"URLhaus data saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\deduplicate.py
+============================================================
+import json
+
+
+INPUT_FILE = "data/threatfox_normalized.json"
+OUTPUT_FILE = "data/iocs_deduplicated.json"
+
+
+with open(INPUT_FILE, "r", encoding="utf-8") as f:
+    iocs = json.load(f)
+
+
+unique_iocs = []
+seen = set()
+
+for item in iocs:
+
+    key = (item["ioc"], item["ioc_type"])
+
+    if key not in seen:
+        seen.add(key)
+        unique_iocs.append(item)
+
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(unique_iocs, f, indent=4)
+
+
+print(f"Original IOCs: {len(iocs)}")
+print(f"Unique IOCs: {len(unique_iocs)}")
+print(f"Duplicates removed: {len(iocs) - len(unique_iocs)}")
+print(f"Saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\extract_url_observables.py
+============================================================
+import json
+import ipaddress
+import hashlib
+from pathlib import Path
+from urllib.parse import urlsplit
+from collections import Counter
+
+ROOT = Path(__file__).resolve().parent.parent
+INPUT_FILE = ROOT / "data" / "all_iocs.json"
+OUTPUT_FILE = ROOT / "data" / "url_derived_observables.json"
+
+
+def stable_id(value):
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()[:16]
+
+
+with INPUT_FILE.open(encoding="utf-8") as f:
+    iocs = json.load(f)
+
+derived = []
+seen = set()
+stats = Counter()
+
+for item in iocs:
+    if str(item.get("ioc_type", "")).lower() != "url":
+        continue
+
+    original_url = str(item.get("ioc", "")).strip()
+
+    try:
+        parsed = urlsplit(
+            original_url if "://" in original_url else "//" + original_url
+        )
+        host = parsed.hostname
+
+        if not host:
+            stats["invalid_or_missing_host"] += 1
+            continue
+
+        host = host.rstrip(".").lower()
+
+        try:
+            ipaddress.ip_address(host)
+            host_type = "ip"
+            stats["ip_hosts"] += 1
+        except ValueError:
+            host_type = "domain"
+            stats["domain_hosts"] += 1
+
+        original_ref = stable_id(
+            f'{item.get("source")}|{item.get("id")}|{original_url}'
+        )
+
+        common = {
+            "original_ioc_ref": original_ref,
+            "original_ioc_id": item.get("id"),
+            "original_ioc": original_url,
+            "original_ioc_type": item.get("ioc_type"),
+            "source": item.get("source"),
+            "confidence": item.get("confidence"),
+            "threat_type": item.get("threat_type"),
+            "malware": item.get("malware"),
+            "first_seen": item.get("first_seen"),
+            "last_seen": item.get("last_seen"),
+            "reporter": item.get("reporter"),
+            "tags": item.get("tags", []),
+        }
+
+        host_key = (original_ref, host_type, host)
+
+        if host_key not in seen:
+            seen.add(host_key)
+            derived.append({
+                "observable_id": stable_id(
+                    f"{original_ref}|{host_type}|{host}"
+                ),
+                "observable": host,
+                "observable_type": host_type,
+                **common,
+            })
+            stats["host_observables"] += 1
+
+        try:
+            port = parsed.port
+        except ValueError:
+            port = None
+            stats["invalid_ports"] += 1
+
+        if port is not None:
+            port_value = str(port)
+            port_key = (original_ref, "port", port_value)
+
+            if port_key not in seen:
+                seen.add(port_key)
+                derived.append({
+                    "observable_id": stable_id(
+                        f"{original_ref}|port|{port_value}"
+                    ),
+                    "observable": port_value,
+                    "observable_type": "port",
+                    **common,
+                })
+                stats["port_observables"] += 1
+
+    except ValueError:
+        stats["invalid_urls"] += 1
+
+
+OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+with OUTPUT_FILE.open("w", encoding="utf-8") as f:
+    json.dump(derived, f, indent=2, ensure_ascii=False)
+
+print("URL Observable Extraction Complete")
+print("-----------------------------------")
+print("Total original IOCs:", len(iocs))
+print("Derived observables:", len(derived))
+
+for key, value in stats.items():
+    print(f"{key}: {value}")
+
+print("Output:", OUTPUT_FILE.relative_to(ROOT))
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\ioc_quality_report.py
+============================================================
+import sqlite3
+from pathlib import Path
+from datetime import datetime, timezone
+
+DB_PATH = Path("data/threat_intel.db")
+OUTPUT_PATH = Path("docs/week4_ioc_distribution_report.md")
+
+conn = sqlite3.connect(DB_PATH)
+cur = conn.cursor()
+
+total_original = cur.execute(
+    "SELECT COUNT(*) FROM iocs"
+).fetchone()[0]
+
+total_derived = cur.execute(
+    "SELECT COUNT(*) FROM derived_observables"
+).fetchone()[0]
+
+source_rows = cur.execute("""
+SELECT source, COUNT(*)
+FROM iocs
+GROUP BY source
+ORDER BY COUNT(*) DESC
+""").fetchall()
+
+type_rows = cur.execute("""
+SELECT ioc_type, COUNT(*)
+FROM iocs
+GROUP BY ioc_type
+ORDER BY COUNT(*) DESC
+""").fetchall()
+
+derived_type_rows = cur.execute("""
+SELECT observable_type, COUNT(*)
+FROM derived_observables
+GROUP BY observable_type
+ORDER BY COUNT(*) DESC
+""").fetchall()
+
+derived_source_rows = cur.execute("""
+SELECT i.source, d.observable_type, COUNT(*)
+FROM derived_observables d
+JOIN iocs i ON i.original_ioc_ref = d.original_ioc_ref
+GROUP BY i.source, d.observable_type
+ORDER BY i.source, d.observable_type
+""").fetchall()
+
+quality_checks = {
+    "Missing IOC": "ioc IS NULL OR TRIM(ioc) = ''",
+    "Missing IOC Type": "ioc_type IS NULL OR TRIM(ioc_type) = ''",
+    "Missing Source": "source IS NULL OR TRIM(source) = ''",
+    "Missing Threat Type": "threat_type IS NULL OR TRIM(threat_type) = ''",
+    "Missing First Seen": "first_seen IS NULL OR TRIM(first_seen) = ''",
+    "Missing Confidence": "confidence IS NULL",
+    "Invalid Confidence": "confidence < 0 OR confidence > 100",
+}
+
+quality_results = {}
+for label, condition in quality_checks.items():
+    quality_results[label] = cur.execute(
+        f"SELECT COUNT(*) FROM iocs WHERE {condition}"
+    ).fetchone()[0]
+
+duplicate_groups = cur.execute("""
+SELECT COUNT(*) FROM (
+    SELECT ioc, LOWER(ioc_type), source
+    FROM iocs
+    GROUP BY ioc, LOWER(ioc_type), source
+    HAVING COUNT(*) > 1
+)
+""").fetchone()[0]
+
+derived_quality = {
+    "Missing Observable": """
+        observable IS NULL OR TRIM(observable) = ''
+    """,
+    "Missing Observable Type": """
+        observable_type IS NULL OR TRIM(observable_type) = ''
+    """,
+    "Missing Original Reference": """
+        original_ioc_ref IS NULL OR TRIM(original_ioc_ref) = ''
+    """,
+}
+
+derived_results = {}
+for label, condition in derived_quality.items():
+    derived_results[label] = cur.execute(
+        f"SELECT COUNT(*) FROM derived_observables WHERE {condition}"
+    ).fetchone()[0]
+
+confidence_rows = cur.execute("""
+SELECT source,
+       COUNT(*) AS total,
+       SUM(CASE WHEN confidence IS NULL THEN 1 ELSE 0 END) AS missing,
+       SUM(CASE WHEN confidence IS NOT NULL THEN 1 ELSE 0 END) AS available
+FROM iocs
+GROUP BY source
+ORDER BY total DESC
+""").fetchall()
+
+conn.close()
+
+lines = [
+    "# Week 4 - IOC Distribution & Data Quality Report",
+    "",
+    f"Generated: {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}",
+    "",
+    "## 1. Executive Summary",
+    "",
+    f"- Original IOCs: **{total_original:,}**",
+    f"- Derived observables: **{total_derived:,}**",
+    f"- Duplicate original IOC groups: **{duplicate_groups:,}**",
+    "- Derived observables are extracted from existing URL IOCs. "
+    "They are not additional original feed IOCs.",
+    "",
+    "## 2. Original IOCs by Source",
+    "",
+    "| Source | IOC Count |",
+    "|---|---:|",
+]
+
+for source, count in source_rows:
+    lines.append(f"| {source} | {count:,} |")
+
+lines += [
+    "",
+    "## 3. Original IOCs by Type",
+    "",
+    "| IOC Type | Count |",
+    "|---|---:|",
+]
+
+for ioc_type, count in type_rows:
+    lines.append(f"| {ioc_type} | {count:,} |")
+
+url_count = sum(
+    count for ioc_type, count in type_rows
+    if ioc_type.lower() == "url"
+)
+url_percentage = (url_count / total_original * 100) if total_original else 0
+
+lines += [
+    "",
+    f"URL and URL-case variants account for **{url_count:,} "
+    f"({url_percentage:.2f}%)** of original IOCs.",
+    "",
+    "### URL Dominance Explanation",
+    "",
+    "The feed is strongly URL-dominated, mainly because URLhaus contributes "
+    "a large volume of URL indicators. This affects network detection coverage: "
+    "connection and DNS matching generally use IPs and domains, while full URL "
+    "and URI matching requires suitable HTTP-level evidence such as Zeek http.log. "
+    "Derived IP and domain observables improve the availability of host indicators, "
+    "but do not guarantee matches without suitable network traffic.",
+    "",
+    "## 4. Derived Observables",
+    "",
+    "| Observable Type | Count |",
+    "|---|---:|",
+]
+
+for observable_type, count in derived_type_rows:
+    lines.append(f"| {observable_type} | {count:,} |")
+
+lines += [
+    "",
+    "### Derived Observables by Source",
+    "",
+    "| Source | Type | Count |",
+    "|---|---|---:|",
+]
+
+for source, observable_type, count in derived_source_rows:
+    lines.append(f"| {source} | {observable_type} | {count:,} |")
+
+lines += [
+    "",
+    "Derived IPs, domains, and explicit ports retain a reference to their "
+    "original URL IOC. Ports are contextual metadata and must not be matched "
+    "as standalone indicators.",
+    "",
+    "## 5. Original IOC Data Quality",
+    "",
+    "| Check | Result |",
+    "|---|---:|",
+]
+
+for label, count in quality_results.items():
+    lines.append(f"| {label} | {count:,} |")
+
+lines += [
+    f"| Duplicate original IOC groups (case-insensitive type) | {duplicate_groups:,} |",
+    "",
+    "### Confidence Availability by Source",
+    "",
+    "| Source | Total | Missing | Available | Missing % |",
+    "|---|---:|---:|---:|---:|",
+]
+
+for source, total, missing, available in confidence_rows:
+    percentage = (missing / total * 100) if total else 0
+    lines.append(
+        f"| {source} | {total:,} | {missing:,} | "
+        f"{available:,} | {percentage:.2f}% |"
+    )
+
+lines += [
+    "",
+    "Missing confidence values are source-related: URLhaus and OTX records "
+    "in this dataset do not provide confidence values, while ThreatFox records "
+    "do. Missing values are retained as NULL; no default confidence is invented.",
+    "",
+    "## 6. Derived Data Quality",
+    "",
+    "| Check | Result |",
+    "|---|---:|",
+]
+
+for label, count in derived_results.items():
+    lines.append(f"| {label} | {count:,} |")
+
+lines += [
+    "",
+    "## 7. Interpretation and Limitations",
+    "",
+    "- Original IOC counts and derived observable counts are reported separately.",
+    "- Derived observables originate from existing URLs and preserve provenance.",
+    "- Extracted IP addresses are URL host values, not DNS-resolved addresses.",
+    "- An extracted IP or domain does not imply that it appears in the analyzed PCAP.",
+    "- Detection coverage also depends on the available Zeek logs and matcher support.",
+    "- Missing confidence is not treated as zero confidence.",
+    "",
+    "## 8. Reproduction",
+    "",
+    "Run the following command from the project root:",
+    "",
+    "```powershell",
+    "python normalization/ioc_quality_report.py",
+    "```",
+    "",
+]
+
+OUTPUT_PATH.write_text("\n".join(lines), encoding="utf-8")
+print(f"Report generated: {OUTPUT_PATH}")
+print(f"Original IOCs: {total_original:,}")
+print(f"Derived observables: {total_derived:,}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\merge_iocs.py
+============================================================
+import json
+
+THREATFOX_FILE = "data/threatfox_normalized.json"
+URLHAUS_FILE = "data/urlhaus_normalized.json"
+OTX_FILE = "data/otx_normalized.json"
+
+OUTPUT_FILE = "data/all_iocs.json"
+
+
+# Load ThreatFox IOCs
+with open(THREATFOX_FILE, "r", encoding="utf-8") as f:
+    threatfox_iocs = json.load(f)
+
+
+# Load URLhaus IOCs
+with open(URLHAUS_FILE, "r", encoding="utf-8") as f:
+    urlhaus_iocs = json.load(f)
+
+
+# Load OTX IOCs
+with open(OTX_FILE, "r", encoding="utf-8") as f:
+    otx_iocs = json.load(f)
+
+
+# Merge all sources
+all_iocs = threatfox_iocs + urlhaus_iocs + otx_iocs
+
+
+# Deduplicate IOCs
+unique_iocs = []
+seen = set()
+duplicates = 0
+
+
+for item in all_iocs:
+
+    key = (item["ioc"], item["ioc_type"])
+
+    if key in seen:
+        duplicates += 1
+        continue
+
+    seen.add(key)
+    unique_iocs.append(item)
+
+
+# Save merged and deduplicated data
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(unique_iocs, f, indent=4)
+
+
+# Results
+print(f"ThreatFox IOCs: {len(threatfox_iocs)}")
+print(f"URLhaus IOCs: {len(urlhaus_iocs)}")
+print(f"OTX IOCs: {len(otx_iocs)}")
+print(f"Total before deduplication: {len(all_iocs)}")
+print(f"Unique IOCs: {len(unique_iocs)}")
+print(f"Duplicates removed: {duplicates}")
+print(f"Saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\merge_iocs_backup.py
+============================================================
+import json
+
+THREATFOX_FILE = "data/threatfox_normalized.json"
+URLHAUS_FILE = "data/urlhaus_normalized.json"
+OUTPUT_FILE = "data/all_iocs.json"
+
+# Load ThreatFox IOCs
+with open(THREATFOX_FILE, "r", encoding="utf-8") as f:
+    threatfox_iocs = json.load(f)
+
+# Load URLhaus IOCs
+with open(URLHAUS_FILE, "r", encoding="utf-8") as f:
+    urlhaus_iocs = json.load(f)
+
+all_iocs = threatfox_iocs + urlhaus_iocs
+
+unique_iocs = []
+seen = set()
+duplicates = 0
+
+for item in all_iocs:
+    key = (item["ioc"], item["ioc_type"])
+
+    if key in seen:
+        duplicates += 1
+        continue
+
+    seen.add(key)
+    unique_iocs.append(item)
+
+# Save merged and deduplicated data
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(unique_iocs, f, indent=4)
+
+print(f"ThreatFox IOCs: {len(threatfox_iocs)}")
+print(f"URLhaus IOCs: {len(urlhaus_iocs)}")
+print(f"Total before deduplication: {len(all_iocs)}")
+print(f"Unique IOCs: {len(unique_iocs)}")
+print(f"Duplicates removed: {duplicates}")
+print(f"Saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\otx_normalizer.py
+============================================================
+import json
+
+INPUT_FILE = "data/otx_raw.json"
+OUTPUT_FILE = "data/otx_normalized.json"
+
+with open(INPUT_FILE, "r", encoding="utf-8") as f:
+    raw_data = json.load(f)
+
+normalized_iocs = []
+
+for pulse in raw_data["results"]:
+    for indicator in pulse["indicators"]:
+
+        normalized_ioc = {
+            "id": str(indicator["id"]),
+            "ioc": indicator["indicator"],
+            "ioc_type": indicator["type"],
+            "source": "OTX",
+            "threat_type": "threat_intelligence",
+            "malware": None,
+            "confidence": None,
+            "first_seen": indicator["created"],
+            "last_seen": pulse["modified"],
+            "reporter": pulse["author_name"],
+            "tags": [
+                pulse["name"],
+                pulse.get("adversary")
+            ]
+        }
+
+        normalized_iocs.append(normalized_ioc)
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(normalized_iocs, f, indent=4)
+
+print(f"Normalized {len(normalized_iocs)} OTX IOCs")
+print(f"Saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\threatfox_normalizer.py
+============================================================
+import json
+
+
+INPUT_FILE = "data/threatfox_raw.json"
+OUTPUT_FILE = "data/threatfox_normalized.json"
+
+
+with open(INPUT_FILE, "r", encoding="utf-8") as f:
+    raw_data = json.load(f)
+
+
+normalized_iocs = []
+
+if raw_data.get("query_status") != "ok" or "data" not in raw_data:
+    raise SystemExit(
+        f"threatfox_raw.json is not a valid ThreatFox export "
+        f"(query_status={raw_data.get('query_status')!r}). Re-run collectors/threatfox_collector.py with a valid THREATFOX_AUTH_KEY."
+    )
+
+for item in raw_data["data"]:
+
+    normalized_ioc = {
+        "id": item["id"],
+        "ioc": item["ioc"],
+        "ioc_type": item["ioc_type"],
+        "source": "ThreatFox",
+        "threat_type": item["threat_type"],
+        "malware": item["malware"],
+        "confidence": item["confidence_level"],
+        "first_seen": item["first_seen"],
+        "last_seen": item["last_seen"],
+        "reporter": item["reporter"],
+        "tags": item["tags"]
+    }
+
+    normalized_iocs.append(normalized_ioc)
+
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(normalized_iocs, f, indent=4)
+
+
+print(f"Normalized {len(normalized_iocs)} IOCs")
+print(f"Saved to {OUTPUT_FILE}")
+
+
+============================================================
+FILE: D:\Beko\Games\New folder (2)\threat-intel-project\normalization\urlhaus_normalizer.py
+============================================================
+import json
+
+
+INPUT_FILE = "data/urlhaus_raw.json"
+OUTPUT_FILE = "data/urlhaus_normalized.json"
+
+
+with open(INPUT_FILE, "r", encoding="utf-8") as f:
+    raw_data = json.load(f)
+
+
+normalized_iocs = []
+
+for record_id, records in raw_data.items():
+
+    for item in records:
+
+        normalized_ioc = {
+            "id": record_id,
+            "ioc": item["url"],
+            "ioc_type": "url",
+            "source": "URLhaus",
+            "threat_type": item["threat"],
+            "malware": None,
+            "confidence": None,
+            "first_seen": item["dateadded"],
+            "last_seen": item["last_online"],
+            "reporter": item["reporter"],
+            "tags": item["tags"] if item["tags"] else []
+        }
+
+        normalized_iocs.append(normalized_ioc)
+
+
+with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+    json.dump(normalized_iocs, f, indent=4)
+
+
+print(f"Normalized {len(normalized_iocs)} URLhaus IOCs")
+print(f"Saved to {OUTPUT_FILE}")

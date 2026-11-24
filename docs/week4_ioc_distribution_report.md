@@ -1,40 +1,41 @@
 # Week 4 - IOC Distribution & Data Quality Report
 
-Generated: 2026-11-24 02:30 UTC
+Generated: 2026-11-24 05:57 UTC
 
 ## 1. Executive Summary
 
-- Original IOCs: **35,707**
-- Derived observables: **46,028**
-- Duplicate original IOC groups: **0**
+- Original IOCs: **119,989**
+- Derived observables: **51,192**
+- Duplicate original IOC groups: **4,443**
 - Derived observables are extracted from existing URL IOCs. They are not additional original feed IOCs.
 
 ## 2. Original IOCs by Source
 
 | Source | IOC Count |
 |---|---:|
-| URLhaus | 33,205 |
-| ThreatFox | 1,967 |
-| OTX | 535 |
+| OTX | 80,621 |
+| URLhaus | 33,209 |
+| ThreatFox | 6,159 |
 
 ## 3. Original IOCs by Type
 
 | IOC Type | Count |
 |---|---:|
-| url | 33,919 |
-| sha256_hash | 805 |
-| ip:port | 222 |
-| domain | 188 |
-| FileHash-SHA256 | 160 |
-| FileHash-MD5 | 123 |
-| FileHash-SHA1 | 121 |
-| hostname | 53 |
-| sha1_hash | 41 |
-| md5_hash | 41 |
-| URL | 33 |
-| IPv4 | 1 |
+| url | 38,479 |
+| domain | 29,715 |
+| sha256_hash | 18,023 |
+| md5_hash | 9,428 |
+| sha1_hash | 8,883 |
+| hostname | 8,176 |
+| ip:port | 5,138 |
+| cve | 1,627 |
+| ip | 378 |
+| yara | 88 |
+| email | 49 |
+| ssl_cert_fingerprint | 4 |
+| bitcoin_address | 1 |
 
-URL and URL-case variants account for **33,952 (95.08%)** of original IOCs.
+URL and URL-case variants account for **38,479 (32.07%)** of original IOCs.
 
 ### URL Dominance Explanation
 
@@ -44,21 +45,21 @@ The feed is strongly URL-dominated, mainly because URLhaus contributes a large v
 
 | Observable Type | Count |
 |---|---:|
-| domain | 18,443 |
-| ip | 15,509 |
-| port | 12,076 |
+| domain | 22,279 |
+| ip | 16,200 |
+| port | 12,713 |
 
 ### Derived Observables by Source
 
 | Source | Type | Count |
 |---|---|---:|
-| OTX | domain | 26 |
-| OTX | ip | 7 |
-| OTX | port | 7 |
-| ThreatFox | domain | 701 |
-| ThreatFox | ip | 13 |
-| ThreatFox | port | 12 |
-| URLhaus | domain | 17,716 |
+| OTX | domain | 4,526 |
+| OTX | ip | 670 |
+| OTX | port | 645 |
+| ThreatFox | domain | 33 |
+| ThreatFox | ip | 41 |
+| ThreatFox | port | 11 |
+| URLhaus | domain | 17,720 |
 | URLhaus | ip | 15,489 |
 | URLhaus | port | 12,057 |
 
@@ -73,17 +74,17 @@ Derived IPs, domains, and explicit ports retain a reference to their original UR
 | Missing Source | 0 |
 | Missing Threat Type | 0 |
 | Missing First Seen | 0 |
-| Missing Confidence | 33,740 |
+| Missing Confidence | 113,830 |
 | Invalid Confidence | 0 |
-| Duplicate original IOC groups (case-insensitive type) | 0 |
+| Duplicate original IOC groups (case-insensitive type) | 4,443 |
 
 ### Confidence Availability by Source
 
 | Source | Total | Missing | Available | Missing % |
 |---|---:|---:|---:|---:|
-| URLhaus | 33,205 | 33,205 | 0 | 100.00% |
-| ThreatFox | 1,967 | 0 | 1,967 | 0.00% |
-| OTX | 535 | 535 | 0 | 100.00% |
+| OTX | 80,621 | 80,621 | 0 | 100.00% |
+| URLhaus | 33,209 | 33,209 | 0 | 100.00% |
+| ThreatFox | 6,159 | 0 | 6,159 | 0.00% |
 
 Missing confidence values are source-related: URLhaus and OTX records in this dataset do not provide confidence values, while ThreatFox records do. Missing values are retained as NULL; no default confidence is invented.
 
@@ -111,3 +112,24 @@ Run the following command from the project root:
 ```powershell
 python normalization/ioc_quality_report.py
 ```
+
+## 9. Collection Scope and Limitations
+
+### AlienVault OTX
+
+The OTX dataset used in this report is a partial collection, not a
+complete subscribed-pulses feed export.
+
+- Pages collected: 390
+- Pulses collected: 1,950
+- Indicators normalized: 80,621
+- Collection status: Partial
+- Pagination: Additional pages were available but were not collected.
+
+The partial collection was retained as a bounded dataset to avoid
+unnecessarily long collection runs. All collected indicators were
+normalized and included in the merged IOC database.
+
+Therefore, OTX counts in this report represent the collected sample
+only and must not be interpreted as the complete OTX feed inventory.
+
