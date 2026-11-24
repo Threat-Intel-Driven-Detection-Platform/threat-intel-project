@@ -12,3 +12,8 @@ data/network/ioc_matches_baseline.json
 # Secrets / generated
 .env
 results/sample_validation.json
+
+# Week 4 local database backups and test files
+data/threat_intel_before_derived.db
+data/threat_intel_before_rebuild_test.db
+data/threat_intel_rebuild_test.db
